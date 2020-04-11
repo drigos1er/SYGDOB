@@ -1,0 +1,128 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}SYGDOB| CREATION DE COMPTE{% endblock %}
+
+{% block body %}
+    <div class="row">
+        <div class="col-md-8 col-sm-8 col-md-offset-2 col-sm-offset-2">
+            {{ form_start(form) }}
+                <div class="card card-login card-hidden">
+                    <div class="card-header text-center" data-background-color="blue">
+                        <h4 class="card-title">CREATION DE COMPTE</h4>
+                        <div class="social-line">
+
+                        </div>
+                    </div>
+                    <p class="category text-center">
+
+                    <div style="background-color: orange; font-size: 14px; color: white"></div>
+
+                    </p>
+                    <div class="card-content">
+
+
+
+                        <div class="row">
+                            <div class="col-md-8 col-md-offset-2">
+                                <div class="form-group">
+
+                                    {{ form_widget(form.username,{'attr': {'placeholder': 'Nom d\'utilisateur','class': 'form-control'}}) }}
+
+                                    <div class="validation">    {{ form_errors(form.username) }} </div>
+                                </div>
+                                <div class="form-group">
+
+                                    <div class="form-group">
+                                        {{ form_widget(form.firstname,{'attr': {'placeholder': 'Nom ','class': 'form-control'}}) }}
+
+                                        <div class="validation"> {{ form_errors(form.firstname) }} </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+
+                                    {{ form_widget(form.lastname,{'attr': {'placeholder': 'Prénoms ','class': 'form-control'}}) }}
+
+                                    <div class="validation"> {{ form_errors(form.lastname) }} </div>
+                                </div>
+
+
+                                <div class="form-group">
+
+                                    {{ form_widget(form.gender,{'attr': {'placeholder': 'Genre ','class': 'form-control'}}) }}
+
+                                    <div class="validation"> {{ form_errors(form.gender) }} </div>
+                                </div>
+
+
+
+
+
+
+
+
+
+
+                                <div class="form-group">
+
+
+                                    {{ form_widget(form.email,{'attr': {'Placeholder': 'Adresse email','class': 'form-control'}}) }}
+
+                                    <div class="validation"> {{ form_errors(form.email) }} </div>
+                                </div>
+                                <div class="form-group">
+
+
+                                    {{ form_widget(form.phone,{'attr': {'Placeholder': 'Téléphone','class': 'form-control'}}) }}
+
+                                    <div class="validation">{{ form_errors(form.phone) }}  </div>
+                                </div>
+
+
+
+
+
+
+
+
+                                <div class="form-group">
+
+                                    {{ form_widget(form.password,{'attr': {'Placeholder': 'Mot de passe','class': 'form-control'}}) }}
+
+                                    <div class="validation"> {{ form_errors(form.password) }} </div>
+                                </div>
+
+                                <div class="form-group">
+
+                                    {{ form_widget(form.confirm_password,{'attr': {'Placeholder': 'Répétez le mot de passe','class': 'form-control'}}) }}
+
+                                    <div class="validation"> {{ form_errors(form.confirm_password) }} </div>
+                                </div>
+                                <div class="card card-profile">
+                                    <div class="card-avatar">
+                                        <a href="#pablo">
+                                            <img src="{{ asset('build/img/default-avatar.png') }}" alt="photoprofile"/>
+                                        </a>
+                                    </div>
+
+                                    <div class="col-sm-offset-5">{{ form_widget(form.picture) }}</div>
+
+                                    <div class="validation"> {{ form_errors(form.picture) }} </div>
+                                </div>
+
+                                <div class="col-sm-offset-4"> <button type="submit" class="btn btn-info" >
+                                    ENREGISTRER L'UTILISATEUR</button></div>
+
+                            </div>
+
+                            <div class="col-md-6">
+
+                            </div>
+                        </div>
+                        {{ form_end(form) }}
+                    </div>
+
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}

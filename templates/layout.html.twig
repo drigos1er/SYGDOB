@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>{% block title %}SYGDOB-Création de Compte{% endblock %}</title>
+    {% block stylesheets %}
+    <link href="{{ asset('css/style.css') }}" rel="stylesheet" type="text/css">
+
+    {% endblock %}
+</head>
+<body>
+{% block body %}
+<div style="margin-left: 1000px;">
+    {%if not app.user  %}
+
+
+        <li><a href=""><i class="material-icons">perm_identity</i>Se Connecter</a></li>
+
+    {% else %}
+
+
+
+
+        <div class="info">
+            <a data-toggle="collapse" href="#collapseExample" class="collapsed" style="color: white">
+                <i class="material-icons">perm_identity</i> {{ app.user.firstname }}
+                <br>&nbsp;{{ app.user.lastname}}
+                <b class="caret"></b>
+            </a>
+            <div class="collapse" id="collapseExample">
+                <ul class="nav">
+                    <li>
+                        <a href="" style="color: black">Mon Profil</a>
+
+                    </li>
+
+                    <li>
+                        <a href="" style="color: black">Modifier mot de Passe</a>
+
+                    </li>
+
+                    <li>
+                        <a href="" style="color: black"> Deconnexion</a>
+
+                    </li>
+
+
+                </ul>
+            </div>
+        </div>
+
+    {% endif %}
+</div>
+<br><br><br><br><br><br><br><br>
+
+
+
+<div>
+    <section id="content">
+    {% block fos_user_content %}
+    {% endblock fos_user_content %}
+    </section>
+</div>
+
+{% endblock %}
+{% block javascripts %}
+    <script src="{{ asset('js/index.js') }}"></script>
+{% endblock %}
+
+</body>
+</html>
