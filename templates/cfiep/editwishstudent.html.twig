@@ -1,0 +1,401 @@
+{% extends 'layoutcfiep.html.twig' %}
+
+{% block title %}SIGES| Saisie Voeux Elèves{% endblock %}
+
+{% block body %}
+    <div class="container-fluid">
+
+        <!-- Row -->
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card ">
+                    <div class="card-header bg-info">
+                        <h4 class="card-title text-white text-center">SAISIE ELEVE : {{ std.id }}</h4>
+
+                            <h3 class="col-sm-12 text-center ">
+                                <a href="{{ path('sygdob_dashboardcfiep') }}" class="text-dark-danger ml-1 ">  <i class="fa fa-hand-point-right mr-1"></i>Cliquer ici pour effectuer la saisie si le candidat a des voeux d'établissement hors de sa DREN</a>
+                            </h3>
+
+                    </div>
+
+                        {{ form_start(form,{'attr': {'class': 'form-horizontal'}}) }}
+                        <div class="form-body">
+                            <div class="card-body">
+
+                                <h6 class="card-title "><i class="mdi mdi-face"></i>IDENTITE DU CANDIDAT</h6>
+                                <hr class="mt-0 mb-5">
+                            </div>
+
+                            <div class="card-body">
+                                <div class="row" style="margin-top: -71px;">
+                                    <div class="col-md-4">
+                                        <div class="form-group row">
+                                            <label class="control-label text-right col-md-3">Matricule</label>
+                                            <div class="col-md-9">
+                                                <input type="text" class="form-control" id="inputEmail3"
+                                                       value="{{ std.id }}" disabled>
+                                                </div>
+
+
+
+
+
+
+
+
+
+
+                                        </div>
+                                    </div>
+                                    <!--/span-->
+                                    <div class="col-md-4">
+                                        <div class="form-group  row">
+                                            <label class="control-label text-right col-md-3">Nom</label>
+                                            <div class="col-md-9">
+                                                <input type="text" class="form-control" id="inputEmail3"
+                                                       value="{{ std.firstname }}" disabled>
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="col-md-4">
+                                        <div class="form-group  row">
+                                            <label class="control-label text-right col-md-3">Prénoms</label>
+                                            <div class="col-md-9">
+                                                <input type="text" class="form-control" id="inputEmail3"
+                                                       value="{{ std.lastname }}" disabled>
+
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--/span-->
+                                </div>
+                                <!--/row-->
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group row">
+                                            <label class="control-label text-right col-md-3">Date de Naissance<sup style="color: red"> *</sup></label>
+                                            <div class="col-md-9">
+                                                {{ form_widget(form.birthdate) }}
+                                                </div>
+                                        </div>
+                                    </div>
+                                    <!--/span-->
+                                    <div class="col-md-4">
+                                        <div class="form-group row">
+                                            <label class="control-label text-right col-md-3">Lieu de Naissance</label>
+                                            <div class="col-md-9">
+                                                {{ form_widget(form.placeofbirth,{'id': 'inputEmail3','attr': {'placeholder': 'Lieu de Naissance ','class': 'form-control'}}) }}
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--/span-->
+                                    <div class="col-md-4">
+                                        <div class="form-group row">
+                                            <label class="control-label text-right col-md-3">Genre<sup style="color: red"> *</sup></label>
+                                            <div class="col-md-9">
+                                                {{ form_widget(form.kind,{'id': 'inputEmail3','attr': {'placeholder': 'Lieu de Naissance ','class': 'form-control'}}) }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group row">
+                                            <label class="control-label text-right col-md-3">Nationalité<sup style="color: red"> *</sup></label>
+                                            <div class="col-md-9">
+                                                {{ form_widget(form.nationality,{'id': 'inputEmail3','attr': {'placeholder': 'Nationalité ','class': 'form-control'}}) }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--/span-->
+                                    <div class="col-md-4">
+                                        <div class="form-group row">
+                                            <label class="control-label text-right col-md-3">Résidence<sup style="color: red"> *</sup></label>
+                                            <div class="col-md-9">
+                                                {{ form_widget(form.residence,{'id': 'inputEmail3','attr': {'placeholder': 'Résidence','class': 'form-control'}}) }}
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--/span-->
+                                    <div class="col-md-4">
+                                        <div class="form-group row">
+                                            <label class="control-label text-right col-md-3">Localité<sup style="color: red"> *</sup></label>
+                                            <div class="col-md-9">
+                                                {{ form_widget(form.locality,{'attr': {'class': 'select2 form-control custom-select'}}) }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--/row-->
+<br>
+                                <h6 class="card-title"><i class="mdi mdi-home"></i>ADMINISTRATION SCOLAIRE</h6>
+                                <hr class="mt-0 mb-5">
+                            </div>
+
+                            <div class="card-body">
+                                <div class="row" style="margin-top: -71px;">
+                                    <div class="col-md-4">
+                                        <div class="form-group row">
+                                            <label class="control-label text-right col-md-3">IEPP</label>
+                                            <div class="col-md-9">
+
+
+
+                                                <input type="text" class="form-control" id="inputEmail3"
+                                                       value="{{ iepp.ieppname }}" disabled>
+                                            </div>
+
+
+
+
+
+
+
+
+
+
+                                        </div>
+                                    </div>
+                                    <!--/span-->
+                                    <div class="col-md-4">
+                                        <div class="form-group  row">
+                                            <label class="control-label text-right col-md-3">Ecole</label>
+                                            <div class="col-md-9">
+                                                <input type="text" class="form-control" id="inputEmail3"
+                                                       value="{{ school.schoolname }}" disabled>
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="col-md-4">
+                                        <div class="form-group  row">
+                                            <label class="control-label text-right col-md-3">Centre</label>
+                                            <div class="col-md-9">
+                                                <input type="text" class="form-control" id="inputEmail3"
+                                                       value="{{ school.schoolname }}" disabled>
+
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--/span-->
+                                </div>
+                                <!--/row-->
+
+
+                                <!--/row-->
+                                <br>
+                                <h6 class="card-title"><i class="mdi mdi-human-male-female"></i>PARENTS/TUTEUR</h6>
+                                <hr class="mt-0 mb-5">
+                            </div>
+
+                            <div class="card-body">
+                                <div class="row" style="margin-top: -71px;">
+                                    <div class="col-md-4">
+
+                                        <div class="form-group row align-items-center mb-0">
+                                            <label for="inputEmail3"
+                                                   class="col-md-3 text-right control-label col-form-label"></label>
+                                            <div class="col-md-9 border-left pb-2 pt-2">
+                                                {{ form_widget(form.fathername,{'id': 'inputEmail3','attr': {'placeholder': 'Nom et Prénoms','class': 'form-control'}}) }}
+
+                                            </div>
+                                        </div>
+                                        <div class="form-group row align-items-center mb-0">
+                                            <label for="inputEmail3"
+                                                   class="col-md-3 text-right control-label col-form-label">Père<sup style="color: red"> *</sup></label>
+                                            <div class="col-md-9 border-left pb-2 pt-2">
+                                                {{ form_widget(form.fatherjob,{'attr': {'class': 'select2 form-control custom-select'}}) }}
+                                            </div>
+                                        </div>
+                                        <div class="form-group row align-items-center mb-0">
+                                            <label for="inputEmail3"
+                                                   class="col-md-3 text-right control-label col-form-label"></label>
+                                            <div class="col-md-9 border-left pb-2 pt-2">
+
+                                                 {{ form_widget(form.fathercontact,{'id': 'xphone-mask','attr': {'class': 'form-control xphone-inputmask','placeholder': 'N° Téléphone',}}) }}
+
+
+
+                                            </div>
+                                        </div>
+
+
+
+                                    </div>
+                                    <!--/span-->
+
+                                    <div class="col-md-4">
+
+
+                                        <div class="form-group row align-items-center mb-0">
+                                            <label for="inputEmail3"
+                                                   class="col-md-3 text-right control-label col-form-label"></label>
+                                            <div class="col-md-9 border-left pb-2 pt-2">
+                                                {{ form_widget(form.mothername,{'id': 'inputEmail3','attr': {'placeholder': 'Nom et Prénoms','class': 'form-control'}}) }}
+
+                                            </div>
+                                        </div>
+                                        <div class="form-group row align-items-center mb-0">
+                                            <label for="inputEmail3"
+                                                   class="col-md-3 text-right control-label col-form-label">Mère<sup style="color: red"> *</sup></label>
+                                            <div class="col-md-9 border-left pb-2 pt-2">
+                                                {{ form_widget(form.motherjob,{'attr': {'class': 'select2 form-control custom-select'}}) }}
+                                            </div>
+                                        </div>
+                                        <div class="form-group row align-items-center mb-0">
+                                            <label for="inputEmail3"
+                                                   class="col-md-3 text-right control-label col-form-label"></label>
+                                            <div class="col-md-9 border-left pb-2 pt-2">
+
+                                                {{ form_widget(form.mothercontact,{'id': 'xphone-mask-mo','attr': {'class': 'form-control xphone-inputmask','placeholder': 'N° Téléphone',}}) }}
+
+
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="col-md-4">
+
+                                        <div class="form-group row align-items-center mb-0">
+                                            <label for="inputEmail3"
+                                                   class="col-md-3 text-right control-label col-form-label"></label>
+                                            <div class="col-md-9 border-left pb-2 pt-2">
+                                                {{ form_widget(form.tutorname,{'id': 'inputEmail3','attr': {'placeholder': 'Nom et Prénoms','class': 'form-control'}}) }}
+
+                                            </div>
+                                        </div>
+                                        <div class="form-group row align-items-center mb-0">
+                                            <label for="inputEmail3"
+                                                   class="col-md-3 text-right control-label col-form-label">Réquerant<sup style="color: red"> *</sup></label>
+                                            <div class="col-md-9 border-left pb-2 pt-2">
+                                                {{ form_widget(form.typeofidoc,{'attr': {'class': 'select2 form-control custom-select'}}) }}
+                                            </div>
+                                        </div>
+                                        <div class="form-group row align-items-center mb-0">
+                                            <label for="inputEmail3"
+                                                   class="col-md-3 text-right control-label col-form-label"></label>
+                                            <div class="col-md-9 border-left pb-2 pt-2">
+                                                {{ form_widget(form.numofidoc,{'id': 'inputEmail3','attr': {'placeholder': 'N° de la pièce','class': 'form-control'}}) }}
+
+                                            </div>
+                                        </div>
+                                        <div class="form-group row align-items-center mb-0">
+                                            <label for="inputEmail3"
+                                                   class="col-md-3 text-right control-label col-form-label"></label>
+                                            <div class="col-md-9 border-left pb-2 pt-2">
+
+                                                {{ form_widget(form.tutorcontact,{'id': 'xphone-mask-to','attr': {'class': 'form-control xphone-inputmask','placeholder': 'N° Téléphone',}}) }}
+
+
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <!--/span-->
+                                </div>
+                                <!--/row-->
+                                <br>
+
+                                <h6 class="card-title"><i class="mdi mdi-view-list"></i>VOEUX D'ETABLISSEMENTS</h6>
+                                <hr class="mt-0 mb-5">
+                            </div>
+
+                            <div class="card-body " >
+                                <div class="row bg-light" style="margin-top: -71px;">
+                                    <div class="col-md-4">
+
+                                        <div class="form-group row align-items-center mb-0">
+                                            <label for="inputEmail3"
+                                                   class="col-md-3 text-right control-label col-form-label">Voeu 1<sup style="color: red"> *</sup></label>
+                                            <div class="col-md-9 border-left pb-2 pt-2">
+                                                {{ form_widget(form.wish1,{'attr': {'class': 'select2 form-control custom-select'}}) }}
+
+                                            </div>
+                                        </div>
+
+
+
+                                    </div>
+                                    <!--/span-->
+
+                                    <div class="col-md-4">
+
+
+                                        <div class="form-group row align-items-center mb-0">
+                                            <label for="inputEmail3"
+                                                   class="col-md-3 text-right control-label col-form-label">Voeu 2<sup style="color: red"> *</sup></label>
+                                            <div class="col-md-9 border-left pb-2 pt-2">
+                                                {{ form_widget(form.wish2,{'attr': {'class': 'select2 form-control custom-select'}}) }}
+
+                                            </div>
+                                            <div style="color: red">
+                                                {{ form_errors(form.wish2) }}
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+
+                                    <div class="col-md-4">
+
+                                        <div class="form-group row align-items-center mb-0">
+                                            <label for="inputEmail3"
+                                                   class="col-md-3 text-right control-label col-form-label">Voeu 3</label>
+                                            <div class="col-md-9 border-left pb-2 pt-2">
+                                                {{ form_widget(form.wish3,{'attr': {'class': 'select2 form-control custom-select'}}) }}
+
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+                                    <!--/span-->
+                                </div>
+                                <!--/row-->
+
+
+                            </div>
+
+                            <div class="form-actions">
+                                <div class="card-body">
+                                    <div class="text-center">
+                                        <button type="submit" class="btn btn-success">Enregistrer</button>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {{ form_end(form) }}
+                </div>
+            </div>
+        </div>
+        <!-- End Row -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </div>
+{% endblock %}

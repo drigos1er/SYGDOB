@@ -13,3 +13,59 @@ security_login:
 security_logout:
   path:     /logout
   defaults: { _controller: App\Controller\SecurityController::logout }
+
+
+security_redirectuser:
+  path:     /redirectuser
+  defaults: { _controller: App\Controller\SecurityController::redirectuser }
+
+
+security_updpwd:
+  path:     /updatepasswd/{id}
+  defaults: { _controller: App\Controller\SecurityController::updatepwd }
+
+
+
+security_resetpwd:
+  path:     /resetpasswd
+  defaults: { _controller: App\Controller\SecurityController::resetpwd }
+
+
+security_resetting:
+  path:     /resetting/{id}/{token}
+  defaults: { _controller: App\Controller\SecurityController::resetting }
+
+
+security_updprofil:
+  path:     /updateprofil/{id}
+  defaults: { _controller: App\Controller\SecurityController::updateprofil }
+
+
+
+
+sygdob_dashboardcfiep:
+  path:     /cfieparea/dashboardcfiep
+  defaults: { _controller: App\Controller\CfiepController::dashboardcfiep }
+
+
+
+
+
+sygdob_tablestudentbyschoolcf:
+  path:     /cfieparea/tablestudentbyschoolcf
+  defaults: { _controller: App\Controller\CfiepController::tablestudentbyschoolcf }
+
+
+
+
+
+sygdob_listtablestudentbyschoolcf:
+  path:     /cfieparea/listtablestudentbyschoolcf
+  defaults: { _controller: App\Controller\CfiepController::listtablestudentbyschoolcf }
+
+
+
+sygdob_editwishstudent:
+  path:     /cfieparea/editwishstudent/{id}
+  defaults: { _controller: App\Controller\CfiepController::editwishstudent }
+

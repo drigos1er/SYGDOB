@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>{% block title %}SYGDOB-ESPACE CF IEPP{% endblock %}</title>
+    {% block stylesheets %}
+
+
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('build/content/images/favicon.ico') }}">
+
+    <link rel="canonical" href="https://www.wrappixel.com/templates/xtremeadmin/" />
+    <link href="{{ asset('build/content/libs/chartist/dist/chartist.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('build/js/pages/chartist/chartist-init.css') }}" rel="stylesheet">
+    <link href="{{ asset('build/content/libs/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.css') }}" rel="stylesheet">
+    <link href="{{ asset('build/content/libs/c3/c3.min.css') }}" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="{{ asset('build/css/style.min.css') }}" rel="stylesheet">
+        <link href="{{ asset('build/content/libs/datatables.net-bs4/css/dataTables.bootstrap4.css') }}" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="{{ asset('build/content/libs/select2/dist/css/select2.min.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{asset('build/content/libs/bootstrap-datepicker/dist/css/bootstrap-datepicker.css')}}">
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+    {% endblock %}
+</head>
+
+<body>
+    <!-- ============================================================== -->
+    <!-- Preloader - style you can find in spinners.css -->
+    <!-- ============================================================== -->
+    <div class="preloader">
+        <div class="lds-ripple">
+            <div class="lds-pos"></div>
+            <div class="lds-pos"></div>
+        </div>
+    </div>
+    <!-- ============================================================== -->
+    <!-- Main wrapper - style you can find in pages.scss -->
+    <!-- ============================================================== -->
+    <div id="main-wrapper">
+        <!-- ============================================================== -->
+        <!-- Topbar header - style you can find in pages.scss -->
+        <!-- ============================================================== -->
+        <header class="topbar">
+            <nav class="navbar top-navbar navbar-expand-lg navbar-dark">
+                <div class="navbar-header">
+
+                    <!-- This is for the sidebar toggle which is visible on mobile only -->
+                    <a class="nav-toggler waves-effect waves-light d-block d-lg-none" href="javascript:void(0)"><i
+                            class="ti-menu ti-close"></i></a>
+                    <!-- ============================================================== -->
+                    <!-- Logo -->
+                    <!-- ============================================================== -->
+                    <a class="navbar-brand" href="{{ path('sygdob_dashboardcfiep') }}">
+                        <!-- Logo icon -->
+
+
+                        <b class="logo-icon">
+                            <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
+
+
+                            <img src="{{ asset('build/content/images/arm.png') }}" alt="homepage" class="light-logo"  width="30"/>
+                        </b>
+                        <!--End Logo icon -->
+                        <!-- Logo text -->
+                        <div class="logo-text">
+                            <!-- dark Logo text -->
+MENETFP-DOB
+                        </div>
+                    </a>
+                    <!-- ============================================================== -->
+                    <!-- End Logo -->
+                    <!-- ============================================================== -->
+                    <!-- ============================================================== -->
+                    <!-- Toggle which is visible on mobile only -->
+                    <!-- ============================================================== -->
+
+                </div>
+                <!-- ============================================================== -->
+                <!-- End Logo -->
+                <!-- ============================================================== -->
+                <div class="navbar-collapse collapse" id="navbarSupportedContent">
+                    <!-- ============================================================== -->
+                    <!-- toggle and nav items -->
+                    <!-- ============================================================== -->
+                    <ul class="navbar-nav mr-auto float-left">
+                        <!-- This is  -->
+                      <!--   <li class="nav-item"> <a class="nav-link sidebartoggler d-none d-md-block waves-effect waves-dark" href="javascript:void(0)"><i class="ti-menu"></i></a> </li> -->
+                        <!-- ============================================================== -->
+                        <!-- Search -->
+                        <!-- ============================================================== -->
+
+                        <!-- ============================================================== -->
+                        <!-- Mega Menu -->
+                        <!-- ============================================================== -->
+
+                        <!-- ============================================================== -->
+                        <!-- End Mega Menu -->
+                        <!-- ============================================================== -->
+                    </ul>
+                    <!-- ============================================================== -->
+                    <!-- Right side toggle and nav items -->
+                    <!-- ============================================================== -->
+                    <ul class="navbar-nav float-right">
+                        <!-- ============================================================== -->
+                        <!-- Comment -->
+                        <!-- ============================================================== -->
+
+                        <!-- ============================================================== -->
+                        <!-- End Comment -->
+                        <!-- ============================================================== -->
+                        <!-- ============================================================== -->
+                        <!-- Messages -->
+                        <!-- ============================================================== -->
+
+                        <!-- ============================================================== -->
+                        <!-- End Messages -->
+                        <!-- ============================================================== -->
+                        <!-- ============================================================== -->
+                        <!-- Profile -->
+                        <!-- ============================================================== -->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle waves-effect waves-dark" href="" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">
+
+                                {{ app.user.username }}
+
+                                {% if app.user.picture =="" %}
+                                    <img src="{{ asset('build/content/images/default-avatar.png') }}" alt="user" width="30" class="profile-pic rounded-circle" />
+
+                                {% endif %}
+
+                                {% if app.user.picture !="" %}
+
+                                    <img src="/SYGDOB/public/images/users/{{ app.user.picture }}" alt="user" width="30" class="profile-pic rounded-circle" />
+
+
+                                {% endif %}
+
+
+
+
+
+                            </a>
+                            <div class="dropdown-menu mailbox dropdown-menu-right scale-up">
+                                <ul class="dropdown-user list-style-none">
+                                    <li>
+                                        <div class="dw-user-box p-3 d-flex">
+                                            <div class="u-img">
+
+                                                {% if app.user.picture =="" %}
+                                                    <img src="{{ asset('build/content/images/default-avatar.png') }}" alt="user" class="rounded" width="80"/>
+
+                                                {% endif %}
+
+                                                {% if app.user.picture !="" %}
+
+                                                    <img src="/SYGDOB/public/images/users/{{ app.user.picture }}" alt="user" class="rounded" width="80" />
+
+
+                                                {% endif %}
+
+
+
+
+                                            </div>
+                                            <div class="u-text ml-2">
+                                                <h4 class="mb-0"></h4>
+
+
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li role="separator" class="dropdown-divider"></li>
+                                    <li class="user-list"><a class="px-3 py-2" href="{{ path('security_updprofil',{id:app.user.id }) }}"><i class="ti-user"></i> Mon Profil</a></li>
+                                    <li class="user-list"><a class="px-3 py-2" href="{{ path('security_updpwd',{id:app.user.id }) }}"><i class="ti-lock"></i>Modifier Mot de Passe</a></li>
+
+                                    <li class="user-list"><a class="px-3 py-2" href="{{ path('security_logout') }}"><i class="fa fa-power-off"></i> Deconnexion</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                        <!-- ============================================================== -->
+                        <!-- Language -->
+                        <!-- ============================================================== -->
+
+                    </ul>
+                </div>
+            </nav>
+        </header>
+        <!-- ============================================================== -->
+        <!-- End Topbar header -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Left Sidebar - style you can find in sidebar.scss  -->
+        <!-- ============================================================== -->
+        <aside class="left-sidebar">
+            <!-- Sidebar scroll-->
+            <div class="scroll-sidebar">
+                <!-- Sidebar navigation-->
+                <nav class="sidebar-nav">
+                    <ul id="sidebarnav">
+                        <!-- User Profile-->
+
+
+                        <li class="sidebar-item"> <a class="btn waves-effect waves-light btn-light" href="{{ path('sygdob_dashboardcfiep') }}" ><i class="mdi mdi-microsoft"></i><span class="hide-menu">Tableau de Bord </span></a>
+
+                        </li>
+
+                        <li class="sidebar-item"> <a class="btn waves-effect waves-light btn-light"
+                                                     href="{{ path('sygdob_dashboardcfiep') }}" ><i class="mdi mdi-format-line-weight"></i><span
+                                        class="hide-menu">Point des saisies</span></a></li>
+
+                    </ul>
+                </nav>
+                <!-- End Sidebar navigation -->
+            </div>
+            <!-- End Sidebar scroll-->
+        </aside>
+        <!-- ============================================================== -->
+        <!-- End Left Sidebar - style you can find in sidebar.scss  -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Page wrapper  -->
+        <!-- ============================================================== -->
+        <div class="page-wrapper">
+            <!-- ============================================================== -->
+            <!-- Bread crumb and right sidebar toggle -->
+            <!-- ============================================================== -->
+            <div class="row page-titles">
+                <div class="col-md-12 col-12 align-self-center">
+                    <h4 class="text-themecolor mb-0">GESTION DES VOEUX D'AFFECTATIONS EN 6<sup>ème</sup> &nbsp;&nbsp; &nbsp;DREN/DDEN:  <span style="color: black">{{ app.session.get('dren').drenname }} </span> &nbsp;&nbsp;&nbsp;IEPP : <span style="color: black">{{ app.session.get('iepp').ieppname }}</span></h4>
+
+                </div>
+
+            </div>
+            <!-- ============================================================== -->
+            <!-- End Bread crumb and right sidebar toggle -->
+            <!-- ============================================================== -->
+            <!-- ============================================================== -->
+            <!-- Container fluid  -->
+            <!-- ============================================================== -->
+            {% block body %}
+
+            {% endblock %}
+            <!-- ============================================================== -->
+            <!-- End Container fluid  -->
+            <!-- ============================================================== -->
+            <!-- ============================================================== -->
+            <!-- footer -->
+            <!-- ============================================================== -->
+            <footer class="footer">
+                © 2020 SYGDOB - VOEUX D'AFFECTATIONS EN 6ème
+            </footer>
+            <!-- ============================================================== -->
+            <!-- End footer -->
+            <!-- ============================================================== -->
+        </div>
+        <!-- ============================================================== -->
+        <!-- End Page wrapper  -->
+        <!-- ============================================================== -->
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Wrapper -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- customizer Panel -->
+    <!-- ============================================================== -->
+
+    <!-- ============================================================== -->
+    <!-- All Jquery -->
+    <!-- ============================================================== -->
+    <script src="{{ asset('build/content/libs/jquery/dist/jquery.min.js') }}"></script>
+    <!-- Bootstrap tether Core JavaScript -->
+    <script src="{{ asset('build/content/libs/popper.js/dist/umd/popper.min.js') }}"></script>
+    <script src="{{ asset('build/content/libs/bootstrap/dist/js/bootstrap.min.js') }}"></script>
+    <!-- apps -->
+    <script src="{{ asset('build/js/app.min.js') }}"></script>
+    <script src="{{ asset('build/js/app.init.horizontal.js') }}"></script>
+    <script src="{{ asset('build/js/app-style-switcher.horizontal.js') }}"></script>
+    <!-- slimscrollbar scrollbar JavaScript -->
+    <script src="{{ asset('build/content/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js') }}"></script>
+    <script src="{{ asset('build/content/extra-libs/sparkline/sparkline.js') }}"></script>
+    <!--Wave Effects -->
+    <script src="{{ asset('build/js/waves.js') }}"></script>
+    <!--Menu sidebar -->
+    <script src="{{ asset('build/js/sidebarmenu.js') }}"></script>
+    <!--Custom JavaScript -->
+    <script src="{{ asset('build/js/custom.min.js') }}"></script>
+    <!--This page JavaScript -->
+    <!-- chartist chart -->
+    <script src="{{ asset('build/content/libs/chartist/dist/chartist.min.js') }}"></script>
+    <script src="{{ asset('build/content/libs/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.min.js') }}"></script>
+    <!--c3 JavaScript -->
+    <script src="{{ asset('build/content/libs/d3/dist/d3.min.js') }}"></script>
+    <script src="{{ asset('build/content/libs/c3/c3.min.js') }}"></script>
+    <!-- Chart JS -->
+    <script src="{{ asset('build/js/pages/dashboards/dashboard1.js') }}"></script>
+
+
+
+    <!-- This Page JS -->
+    <script src="{{ asset('build/content/libs/select2/dist/js/select2.full.min.js') }}"></script>
+    <script src="{{ asset('build/content/libs/select2/dist/js/select2.min.js') }}"></script>
+    <script src="{{ asset('build/js/pages/forms/select2/select2.init.js') }}"></script>
+
+    <!--This page plugins -->
+    <script src="{{asset('build/content/libs/datatables/media/js/jquery.dataTables.min.js')}}"></script>
+    <script src="{{asset('build/js/pages/datatable/custom-datatable.js')}}"></script>
+    <!-- start - This is for export functionality only -->
+    <script src="https://cdn.datatables.net/buttons/1.5.1/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.5.1/js/buttons.flash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.5.1/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.5.1/js/buttons.print.min.js"></script>
+    <script src="{{asset('build/js/pages/datatable/datatable-advanced.init.js') }}"></script>
+
+    <script src="{{asset('build/content/libs/bootstrap-datepicker/dist/js/bootstrap-datepicker.js')}}"></script>
+
+
+
+    <script src="{{asset('build/content/libs/inputmask/dist/min/jquery.inputmask.bundle.min.js')}}"></script>
+    <script src="{{asset('build/content/libs/inputmask/dist/inputmask/inputmask.extensions.js')}}"></script>
+    <script src="{{asset('build/content/libs/inputmask/dist/inputmask/inputmask.numeric.extensions.js')}}"></script>
+    <script src="{{asset('build/content/libs/inputmask/dist/inputmask/inputmask.date.extensions.js')}}"></script>
+    <script src="{{asset('build/content/libs/inputmask/dist/inputmask/jquery.inputmask.js')}}"></script>
+    <script src="{{asset('build/content/libs/inputmask/dist/inputmask/inputmask.extensions.js')}}"></script>
+    <script src="{{asset('build/js/pages/forms/mask/mask.init.js')}}"></script>
+    <script>
+        // Date Picker
+        jQuery('.mydatepicker, #datepicker, .input-group.date').datepicker();
+        jQuery('#datepicker-autoclose').datepicker({
+            autoclose: true,
+            todayHighlight: true
+        });
+        jQuery('#date-range').datepicker({
+            toggleActive: true
+        });
+        jQuery('#datepicker-inline').datepicker({
+            todayHighlight: true
+        });
+    </script>
+
+    <script>
+
+
+        $('#studentbyschool').DataTable({
+
+
+            "ajax": "{{ path('sygdob_listtablestudentbyschoolcf') }}",
+            "sAjaxDataProp": "data",
+            "pageLength": 50,
+
+            "columns":[
+
+                {"data": "mat"},
+                {"data": "first"},
+                {"data": "last"},
+                {"data": "birth"},
+                {"data": "place"},
+                {"data": "kind"},
+                {"data": "nat"},
+                {"data": "resid"},
+                {"data": "wish1"},
+                {"data": "wish2"},
+                {"data": "wish3"},
+
+
+
+
+            ],
+            "language": {
+
+                "searchPlaceholder": "Recherche",
+                "paginate": {
+                    "first":      "Premier",
+                    "last":       "Dernier",
+                    "next":       "Suivant",
+                    "previous":   "Précédent"
+                },
+                "zeroRecords":    "Aucun Resultat Trouvé",
+                "emptyTable":     "Aucun Resultat Trouvé",
+                "info":           "Affichage de _START_ à _END_ sur _TOTAL_ entrées",
+                "infoEmpty":      "Affichage de 0 à 0 sur 0 entrées",
+                "infoFiltered":   "(filtrés sur _MAX_ total entrées)",
+                "infoPostFix":    "",
+                "thousands":      ",",
+                "lengthMenu":     "Afficher _MENU_ entrées",
+                "loadingRecords": "Chargement...",
+                "processing":     "Chargement...",
+                "search":         "Recherche:"
+
+            }
+        });
+
+        $(document).ready(function(){
+            $('#xphone-mask').inputmask("99-99-99-99");  //static mask
+
+        });
+
+        $(document).ready(function(){
+            $('#xphone-mask-mo').inputmask("99-99-99-99");  //static mask
+
+        });
+
+
+
+        $(document).ready(function(){
+            $('#xphone-mask-to').inputmask("99-99-99-99");  //static mask
+
+        });
+    </script>
+
+
+</body>
+
+</html>

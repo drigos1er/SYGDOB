@@ -3,126 +3,154 @@
 {% block title %}SYGDOB| CREATION DE COMPTE{% endblock %}
 
 {% block body %}
-    <div class="row">
-        <div class="col-md-8 col-sm-8 col-md-offset-2 col-sm-offset-2">
-            {{ form_start(form) }}
-                <div class="card card-login card-hidden">
-                    <div class="card-header text-center" data-background-color="blue">
-                        <h4 class="card-title">CREATION DE COMPTE</h4>
-                        <div class="social-line">
 
-                        </div>
-                    </div>
-                    <p class="category text-center">
-
-                    <div style="background-color: orange; font-size: 14px; color: white"></div>
-
-                    </p>
-                    <div class="card-content">
-
-
-
-                        <div class="row">
-                            <div class="col-md-8 col-md-offset-2">
-                                <div class="form-group">
-
-                                    {{ form_widget(form.username,{'attr': {'placeholder': 'Nom d\'utilisateur','class': 'form-control'}}) }}
-
-                                    <div class="validation">    {{ form_errors(form.username) }} </div>
-                                </div>
-                                <div class="form-group">
-
-                                    <div class="form-group">
-                                        {{ form_widget(form.firstname,{'attr': {'placeholder': 'Nom ','class': 'form-control'}}) }}
-
-                                        <div class="validation"> {{ form_errors(form.firstname) }} </div>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-
-                                    {{ form_widget(form.lastname,{'attr': {'placeholder': 'Prénoms ','class': 'form-control'}}) }}
-
-                                    <div class="validation"> {{ form_errors(form.lastname) }} </div>
-                                </div>
-
-
-                                <div class="form-group">
-
-                                    {{ form_widget(form.gender,{'attr': {'placeholder': 'Genre ','class': 'form-control'}}) }}
-
-                                    <div class="validation"> {{ form_errors(form.gender) }} </div>
-                                </div>
-
-
-
-
-
-
-
-
-
-
-                                <div class="form-group">
-
-
-                                    {{ form_widget(form.email,{'attr': {'Placeholder': 'Adresse email','class': 'form-control'}}) }}
-
-                                    <div class="validation"> {{ form_errors(form.email) }} </div>
-                                </div>
-                                <div class="form-group">
-
-
-                                    {{ form_widget(form.phone,{'attr': {'Placeholder': 'Téléphone','class': 'form-control'}}) }}
-
-                                    <div class="validation">{{ form_errors(form.phone) }}  </div>
-                                </div>
-
-
-
-
-
-
-
-
-                                <div class="form-group">
-
-                                    {{ form_widget(form.password,{'attr': {'Placeholder': 'Mot de passe','class': 'form-control'}}) }}
-
-                                    <div class="validation"> {{ form_errors(form.password) }} </div>
-                                </div>
-
-                                <div class="form-group">
-
-                                    {{ form_widget(form.confirm_password,{'attr': {'Placeholder': 'Répétez le mot de passe','class': 'form-control'}}) }}
-
-                                    <div class="validation"> {{ form_errors(form.confirm_password) }} </div>
-                                </div>
-                                <div class="card card-profile">
-                                    <div class="card-avatar">
-                                        <a href="#pablo">
-                                            <img src="{{ asset('build/img/default-avatar.png') }}" alt="photoprofile"/>
-                                        </a>
-                                    </div>
-
-                                    <div class="col-sm-offset-5">{{ form_widget(form.picture) }}</div>
-
-                                    <div class="validation"> {{ form_errors(form.picture) }} </div>
-                                </div>
-
-                                <div class="col-sm-offset-4"> <button type="submit" class="btn btn-info" >
-                                    ENREGISTRER L'UTILISATEUR</button></div>
-
-                            </div>
-
-                            <div class="col-md-6">
-
-                            </div>
-                        </div>
-                        {{ form_end(form) }}
-                    </div>
-
-                </div>
-            </form>
+    <div class="main-wrapper">
+        <!-- ============================================================== -->
+        <!-- Preloader - style you can find in spinners.css -->
+        <!-- ============================================================== -->
+        <div class="preloader">
+            <div class="lds-ripple">
+                <div class="lds-pos"></div>
+                <div class="lds-pos"></div>
+            </div>
         </div>
+        <!-- ============================================================== -->
+        <!-- Preloader - style you can find in spinners.css -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Login box.scss -->
+        <!-- ============================================================== -->
+        <div class="auth-wrapper d-flex no-block justify-content-center align-items-center" style="background:url({{ asset('build/content/images/background/bg.jpg') }}) no-repeat center center; background-size: cover;">
+            <div class="auth-box p-4 bg-white rounded">
+                <div>
+                    <div class="logo">
+                        <h2 class="box-title mb-3">CREER UN COMPTE</h2>
+                    </div>
+                    <!-- Form -->
+                    <div class="row">
+                        <div class="col-12">
+                            {{ form_start(form,{'attr': {'class': 'form-horizontal mt-3 form-material'}}) }}
+
+                                <div class="form-group mb-3">
+                                    <div class="col-xs-12">
+                                        {{ form_widget(form.username,{'attr': {'placeholder': 'Nom d\'utilisateur','class': 'form-control is-invalid'}}) }}
+                                    </div>
+
+                                    <div style="color: red">
+                                        {{ form_errors(form.username) }}
+                                    </div>
+                                </div>
+                                <div class="form-group mb-3 ">
+                                    <div class="col-xs-12">
+                                        {{ form_widget(form.firstname,{'attr': {'placeholder': 'Nom ','class': 'form-control'}}) }}
+                                    </div>
+
+                                </div>
+                                <div class="form-group mb-3 ">
+                                    <div class="col-xs-12">
+                                        {{ form_widget(form.lastname,{'attr': {'placeholder': 'Prénoms ','class': 'form-control'}}) }}
+                                    </div>
+
+                                </div>
+
+
+
+
+
+
+
+
+                            <div class="form-group mb-3">
+                                <div class="col-xs-12">
+                                {{ form_widget(form.gender,{'attr': {'id': 'inlineFormCustomSelect','class': 'custom-select mr-sm-2'}}) }}
+                                </div>
+
+
+                            </div>
+
+
+
+                            <div class="form-group mb-3">
+                                <div class="col-xs-12">
+                                    {{ form_widget(form.email,{'attr': {'Placeholder': 'Adresse email','class': 'form-control'}}) }}
+                                </div>
+
+                            </div>
+
+
+                            <div class="form-group mb-3">
+                                <div class="col-xs-12">
+                                    {{ form_widget(form.phone,{'attr': {'Placeholder': 'Téléphone','class': 'form-control'}}) }}
+                                </div>
+
+                            </div>
+
+
+                            <div class="form-group mb-3">
+                                <div class="col-xs-12">
+                                    {{ form_widget(form.password,{'attr': {'Placeholder': 'Mot de passe','class': 'form-control'}}) }}
+                                </div>
+                                <div style="color: red">
+                                    {{ form_errors(form.password) }}
+                                </div>
+                            </div>
+
+
+                            <div class="form-group mb-3">
+                                <div class="col-xs-12">
+                                    {{ form_widget(form.confirm_password,{'attr': {'Placeholder': 'Répétez le mot de passe','class': 'form-control'}}) }}
+                                </div>
+                                <div style="color: red">
+                                    {{ form_errors(form.confirm_password) }}
+                                </div>
+                            </div>
+
+
+
+
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">Photo de Profil</span>
+                                </div>
+                                <div class="custom-file">
+                                    {{ form_widget(form.picture,{'attr': {'id': 'exampleInputFile','class': 'form-control-file'}}) }}
+
+
+                                </div>
+                                <div style="color: red">
+                                    {{ form_errors(form.picture) }}
+                                </div>
+                            </div>
+
+                                <div class="form-group text-center mb-3">
+                                    <div class="col-xs-12">
+                                        <button class="btn btn-success btn-lg btn-block text-uppercase waves-effect waves-light" type="submit" >Enregistrer</button>
+                                    </div>
+                                </div>
+                            {{ form_end(form) }}
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ============================================================== -->
+        <!-- Login box.scss -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Page wrapper scss in scafholding.scss -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Page wrapper scss in scafholding.scss -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Right Sidebar -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Right Sidebar -->
+        <!-- ============================================================== -->
     </div>
+
+
 {% endblock %}
