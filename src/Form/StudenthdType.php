@@ -16,7 +16,7 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Validator\Constraints\NotBlank;
 
 
-class StudentType extends AbstractType
+class StudenthdType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -69,7 +69,7 @@ class StudentType extends AbstractType
                 array(
 
                     'class' => 'App\Entity\Locality',
-                    'query_builder' => function(EntityRepository $er)   use ($id)   {
+                    'query_builder' => function(EntityRepository $er)   use ($id)  {
                         return $er->createQueryBuilder('l')
                             // ->join('p.iepp','i')
 
@@ -129,7 +129,7 @@ class StudentType extends AbstractType
                     'choice_label' => 'name',
                     "label"=>"           ",
                     'placeholder' => 'Catégorie socio-professionnelle',
-                    'required'=>false
+                    'required' => false
 
 
 
@@ -167,7 +167,7 @@ class StudentType extends AbstractType
                     'choice_label' => 'name',
                     "label"=>"           ",
                     'placeholder' => 'Catégorie socio-professionnelle',
-                    'required'=>false
+                    'required' => false
 
 
 
@@ -179,7 +179,7 @@ class StudentType extends AbstractType
 
                 ))
             ->add('tutorname',TextType::class,[
-            'required'=>false])
+                'required'=>false])
             ->add('tutorcontact',TextType::class,[
                 'required'=>false])
 
@@ -188,10 +188,11 @@ class StudentType extends AbstractType
 
 
 
-            ->add('typeofidoc',choiceType::class,array('placeholder' => 'Type de Pièce d\'identité du requérant','label'=>' : ','required'=>false, 'choices' => array(
+            ->add('typeofidoc',choiceType::class,array('placeholder' => 'Type de Pièce d\'identité du requérant','label'=>' : ', 'choices' => array(
                 'CNI' => 'CNI','Passport'=>'Passport','Permis de conduire'=>'Permis de conduire','Carte Professionnelle'=>'Carte Professionnelle','Autre'=>'Autre'),
                 'attr' => array(
-                    'class' =>'form-control')))
+                    'class' =>'form-control'),
+                'required' => false))
 
 
 
@@ -206,12 +207,12 @@ class StudentType extends AbstractType
                 array(
 
                     'class' => 'App\Entity\SecondarySchool',
-                    'query_builder' => function(EntityRepository $er)  use ($id)   {
+                    'query_builder' => function(EntityRepository $er)     {
                         return $er->createQueryBuilder('s')
                             // ->join('p.iepp','i')
 
-                            ->where('s.drenddn = :id ')
-                            ->setParameter('id', $id)
+                          //  ->where('s.drenddn = :id ')
+                           // ->setParameter('id', $id)
 
 
 
@@ -237,12 +238,12 @@ class StudentType extends AbstractType
                 array(
 
                     'class' => 'App\Entity\SecondarySchool',
-                    'query_builder' => function(EntityRepository $er)  use ($id)   {
+                    'query_builder' => function(EntityRepository $er)     {
                         return $er->createQueryBuilder('s')
                             // ->join('p.iepp','i')
 
-                            ->where('s.drenddn = :id ')
-                            ->setParameter('id', $id)
+                          //  ->where('s.drenddn = :id ')
+                          //  ->setParameter('id', $id)
 
 
 
@@ -268,12 +269,12 @@ class StudentType extends AbstractType
                 array(
 
                     'class' => 'App\Entity\SecondarySchool',
-                    'query_builder' => function(EntityRepository $er)  use ($id)   {
+                    'query_builder' => function(EntityRepository $er)     {
                         return $er->createQueryBuilder('s')
                             // ->join('p.iepp','i')
 
-                            ->where('s.drenddn = :id ')
-                            ->setParameter('id', $id)
+                           // ->where('s.drenddn = :id ')
+                           // ->setParameter('id', $id)
 
 
 

@@ -58,6 +58,12 @@ sygdob_tablestudentbyschoolcf:
 
 
 
+sygdob_redirecttablestudentbyschoolcf:
+  path:     /cfieparea/redirectablestudentbyschoolcf
+  defaults: { _controller: App\Controller\CfiepController::redirecttablestudentbyschoolcf }
+
+
+
 
 sygdob_listtablestudentbyschoolcf:
   path:     /cfieparea/listtablestudentbyschoolcf
@@ -68,4 +74,109 @@ sygdob_listtablestudentbyschoolcf:
 sygdob_editwishstudent:
   path:     /cfieparea/editwishstudent/{id}
   defaults: { _controller: App\Controller\CfiepController::editwishstudent }
+
+
+
+sygdob_redirecteditwishstudent:
+  path:     /cfieparea/redirecteditwishstudent
+  defaults: { _controller: App\Controller\CfiepController::redirecteditwishstudent }
+
+
+
+
+
+
+sygdob_editwishstudenthd:
+  path:     /cfieparea/editwishstudenthd/{id}
+  defaults: { _controller: App\Controller\CfiepController::editwishstudenthd }
+
+
+
+
+
+
+
+
+
+sygdob_tablerecapeditcf:
+  path:     /cfieparea/tablerecapeditcf
+  defaults: { _controller: App\Controller\CfiepController::tablerecapeditcf }
+
+
+
+sygdob_listtablerecapeditcf:
+  path:     /cfieparea/listtablerecapeditcf
+  defaults: { _controller: App\Controller\CfiepController::listtablerecapeditcf}
+
+
+
+
+sygdob_editwishstudentmat:
+  path:     /cfieparea/editwishstudentmat/{id}
+  defaults: { _controller: App\Controller\CfiepController::editwishstudentmat }
+
+
+sygdob_editwishstudenthdmat:
+  path:     /cfieparea/editwishstudenthdmat/{id}
+  defaults: { _controller: App\Controller\CfiepController::editwishstudenthdmat }
+
+
+
+
+
+sygdob_tablestudentbyname:
+  path:     /cfieparea/tablestudentbyname
+  defaults: { _controller: App\Controller\CfiepController::tablestudentbyname }
+
+
+
+
+sygdob_redirecttablestudentbyname:
+  path:     /cfieparea/redirectablestudentbyname
+  defaults: { _controller: App\Controller\CfiepController::redirecttablestudentbyname }
+
+
+
+sygdob_listtablestudentbyname:
+  path:     /cfieparea/listtablestudentbyname
+  defaults: { _controller: App\Controller\CfiepController::listtablestudentbyname }
+
+
+
+
+
+sygdob_editwishstudentname:
+  path:     /cfieparea/editwishstudentname/{id}
+  defaults: { _controller: App\Controller\CfiepController::editwishstudentname }
+
+
+sygdob_editwishstudenthdname:
+  path:     /cfieparea/editwishstudenthdname/{id}
+  defaults: { _controller: App\Controller\CfiepController::editwishstudenthdname }
+
+
+
+sygdob_dashboardiep:
+  path:     /ieparea/dashboardiep
+  defaults: { _controller: App\Controller\IeppController::dashboardiep }
+
+
+
+sygdob_tablestudentbyschooliep:
+  path:     /ieparea/tablestudentbyschooliep
+  defaults: { _controller: App\Controller\IeppController::tablestudentbyschooliep }
+
+
+
+
+sygdob_redirecttablestudentbyschooliep:
+  path:     /ieparea/redirectablestudentbyschooliep
+  defaults: { _controller: App\Controller\IeppController::redirecttablestudentbyschooliep }
+
+
+
+
+sygdob_listtablestudentbyschooliep:
+  path:     /ieparea/listtablestudentbyschooliep
+  defaults: { _controller: App\Controller\IeppController::listtablestudentbyschooliep }
 

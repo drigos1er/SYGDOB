@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -57,5 +58,34 @@ class SocialConditions
      * @ORM\Column(type="string", length=255)
      */
     private $name;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Student", mappedBy="father_job")
+     */
+    private $students;
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getStudents(): ArrayCollection
+    {
+        return $this->students;
+    }
+
+    /**
+     * @param ArrayCollection $students
+     * @return SocialConditions
+     */
+    public function setStudents(ArrayCollection $students): SocialConditions
+    {
+        $this->students = $students;
+        return $this;
+    }
+
+
+    public function __construct()
+    {
+        $this->students = new ArrayCollection();
+    }
 
 }

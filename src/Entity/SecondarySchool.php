@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -45,6 +46,44 @@ class SecondarySchool
      * @ORM\Column(name="town", type="string", length=255, nullable=true)
      */
     private $town;
+
+
+
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Student", mappedBy="wish1")
+     */
+    private $students;
+
+
+
+    public function __construct()
+    {
+        $this->students = new ArrayCollection();
+    }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getStudents(): ArrayCollection
+    {
+        return $this->students;
+    }
+
+    /**
+     * @param ArrayCollection $students
+     * @return SecondarySchool
+     */
+    public function setStudents(ArrayCollection $students): SecondarySchool
+    {
+        $this->students = $students;
+        return $this;
+    }
+
+
+
+
+
 
     /**
      * @return string

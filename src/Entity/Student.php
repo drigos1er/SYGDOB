@@ -72,12 +72,21 @@ class Student
 
 
 
+
+
+
+
+
     /**
-     * @var string
-     *
-     * @ORM\Column(name="locality", type="string", length=15)
+     * @ORM\ManyToOne(targetEntity="App\Entity\Locality", inversedBy="students")
+     * @ORM\JoinColumn(name="locality_id", referencedColumnName="id",onDelete="SET NULL")
      */
-    private $locality;
+    private $localities;
+
+
+
+
+
 
 
 
@@ -131,12 +140,18 @@ class Student
 
 
 
+
+
+
+
+
     /**
-     * @var string
-     *
-     * @ORM\Column(name="father_job", type="string", length=255)
+     * @ORM\ManyToOne(targetEntity="App\Entity\SocialConditions", inversedBy="students")
+     * @ORM\JoinColumn(name="father_job", referencedColumnName="id",onDelete="SET NULL")
      */
     private $fatherjob;
+
+
 
 
 
@@ -162,12 +177,14 @@ class Student
 
 
 
+
+
     /**
-     * @var string
-     *
-     * @ORM\Column(name="mother_job", type="string", length=255)
+     * @ORM\ManyToOne(targetEntity="App\Entity\SocialConditions", inversedBy="students")
+     * @ORM\JoinColumn(name="mother_job", referencedColumnName="id",onDelete="SET NULL")
      */
     private $motherjob;
+
 
 
 
@@ -223,24 +240,44 @@ class Student
     /**
      * @var string
      *
-     * @ORM\Column(name="wish1", type="string", length=15)
+     * @ORM\ManyToOne(targetEntity="App\Entity\SecondarySchool", inversedBy="students")
+     * @ORM\JoinColumn(name="wish1", referencedColumnName="id",onDelete="SET NULL")
      */
     private $wish1;
 
 
+
+
+
+
+
+
+
+
+
+
     /**
      * @var string
      *
-     * @ORM\Column(name="wish2", type="string", length=15)
-     * @Assert\NotEqualTo(propertyPath="wish1", message="Le voeu2 doit être différent du voeu 1")
+     * @Assert\NotEqualTo(propertyPath="wish1", message="Le voeu 2 doit être différent du voeu 1")
+     * @ORM\ManyToOne(targetEntity="App\Entity\SecondarySchool", inversedBy="students")
+     * @ORM\JoinColumn(name="wish2", referencedColumnName="id",onDelete="SET NULL")
      */
     private $wish2;
 
 
+
+
+
+
+
+
+
     /**
      * @var string
      *
-     * @ORM\Column(name="wish3", type="string", length=15,nullable=true)
+     * @ORM\ManyToOne(targetEntity="App\Entity\SecondarySchool", inversedBy="students")
+     * @ORM\JoinColumn(name="wish3", referencedColumnName="id",onDelete="SET NULL")
      */
     private $wish3;
 
@@ -254,6 +291,30 @@ class Student
     private $validwish;
 
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="upd_birthdate", type="string", length=1,nullable=true)
+     */
+    private $updatebirthdate;
+
+    /**
+     * @return string
+     */
+    public function getUpdatebirthdate(): string
+    {
+        return $this->updatebirthdate;
+    }
+
+    /**
+     * @param string $updatebirthdate
+     * @return Student
+     */
+    public function setUpdatebirthdate(string $updatebirthdate): Student
+    {
+        $this->updatebirthdate = $updatebirthdate;
+        return $this;
+    }
 
 
 
@@ -292,11 +353,29 @@ class Student
     private $validuser;
 
     /**
-     * @return string
+     *
      */
-    public function getId(): string
+    public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getLocalities()
+    {
+        return $this->localities;
+    }
+
+    /**
+     * @param mixed $localities
+     * @return Student
+     */
+    public function setLocalities($localities)
+    {
+        $this->localities = $localities;
+        return $this;
     }
 
     /**
@@ -417,23 +496,6 @@ class Student
         return $this;
     }
 
-    /**
-     *
-     */
-    public function getLocality()
-    {
-        return $this->locality;
-    }
-
-    /**
-     *
-     * @return Student
-     */
-    public function setLocality( $locality): Student
-    {
-        $this->locality = $locality;
-        return $this;
-    }
 
     /**
      * @return string
@@ -508,7 +570,7 @@ class Student
     }
 
     /**
-     * @return string
+     *
      */
     public function getFathername()
     {
@@ -516,17 +578,17 @@ class Student
     }
 
     /**
-     * @param string $fathername
+     *
      * @return Student
      */
-    public function setFathername(string $fathername): Student
+    public function setFathername( $fathername): Student
     {
         $this->fathername = $fathername;
         return $this;
     }
 
     /**
-     * @return string
+     *
      */
     public function getFathercontact()
     {
@@ -534,10 +596,10 @@ class Student
     }
 
     /**
-     * @param string $fathercontact
+     *
      * @return Student
      */
-    public function setFathercontact(string $fathercontact): Student
+    public function setFathercontact( $fathercontact): Student
     {
         $this->fathercontact = $fathercontact;
         return $this;
@@ -562,7 +624,7 @@ class Student
     }
 
     /**
-     * @return string
+     *
      */
     public function getMothername()
     {
@@ -570,17 +632,17 @@ class Student
     }
 
     /**
-     * @param string $mothername
+     *
      * @return Student
      */
-    public function setMothername(string $mothername): Student
+    public function setMothername( $mothername): Student
     {
         $this->mothername = $mothername;
         return $this;
     }
 
     /**
-     * @return string
+     *
      */
     public function getMothercontact()
     {
@@ -588,10 +650,10 @@ class Student
     }
 
     /**
-     * @param string $mothercontact
+     *
      * @return Student
      */
-    public function setMothercontact(string $mothercontact): Student
+    public function setMothercontact($mothercontact): Student
     {
         $this->mothercontact = $mothercontact;
         return $this;
@@ -616,7 +678,7 @@ class Student
     }
 
     /**
-     * @return string
+     *
      */
     public function getTutorname()
     {
@@ -624,17 +686,17 @@ class Student
     }
 
     /**
-     * @param string $tutorname
+     *
      * @return Student
      */
-    public function setTutorname(string $tutorname): Student
+    public function setTutorname( $tutorname): Student
     {
         $this->tutorname = $tutorname;
         return $this;
     }
 
     /**
-     * @return string
+     *
      */
     public function getTutorcontact()
     {
@@ -642,17 +704,17 @@ class Student
     }
 
     /**
-     * @param string $tutorcontact
+     * t
      * @return Student
      */
-    public function setTutorcontact(string $tutorcontact): Student
+    public function setTutorcontact( $tutorcontact): Student
     {
         $this->tutorcontact = $tutorcontact;
         return $this;
     }
 
     /**
-     * @return string
+     *
      */
     public function getTutorjob()
     {
@@ -660,10 +722,10 @@ class Student
     }
 
     /**
-     * @param string $tutorjob
+     *
      * @return Student
      */
-    public function setTutorjob(string $tutorjob): Student
+    public function setTutorjob($tutorjob): Student
     {
         $this->tutorjob = $tutorjob;
         return $this;
@@ -678,10 +740,10 @@ class Student
     }
 
     /**
-     * @param string $typeofidoc
+     *
      * @return Student
      */
-    public function setTypeofidoc(string $typeofidoc): Student
+    public function setTypeofidoc( $typeofidoc): Student
     {
         $this->typeofidoc = $typeofidoc;
         return $this;
@@ -696,10 +758,10 @@ class Student
     }
 
     /**
-     * @param string $numofidoc
+     *
      * @return Student
      */
-    public function setNumofidoc(string $numofidoc): Student
+    public function setNumofidoc( $numofidoc): Student
     {
         $this->numofidoc = $numofidoc;
         return $this;
@@ -760,7 +822,7 @@ class Student
     }
 
     /**
-     * @return string
+     *
      */
     public function getValidwish(): string
     {
@@ -768,10 +830,10 @@ class Student
     }
 
     /**
-     * @param string $validwish
+     *
      * @return Student
      */
-    public function setValidwish(string $validwish): Student
+    public function setValidwish($validwish): Student
     {
         $this->validwish = $validwish;
         return $this;

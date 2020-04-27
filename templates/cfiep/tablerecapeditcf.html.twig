@@ -1,0 +1,51 @@
+{% extends 'layoutcfiep.html.twig' %}
+
+{% block title %}SYGDOB| Liste d'élèves{% endblock %}
+
+{% block body %}
+    <div class="container-fluid">
+
+
+
+
+
+
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title text-center">POINT DES SAISIES PAR ECOLE  </h4>
+
+
+                        {% for message in app.flashes('success')  %}
+                            <div class="alert alert-success"> {{ message }}</div>
+                        {% endfor  %}
+
+
+                        <div class="table-responsive">
+                            <table  class="table table-hover table-bordered table-striped table-sm mb-0 display" id="schoolbyiep" style="width:100%">
+                                <thead class="bg-info text-white">
+                                <tr>
+                                    <th>Ecole</th>
+                                    <th>Nombre de candidats</th>
+                                    <th>Nombre de candidats avec voeux saisis</th>
+                                    <th>Taux de  saisis</th>
+
+
+                                </tr>
+                                </thead>
+                                <tbody>
+
+                                </tbody>
+
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+    </div>
+{% endblock %}

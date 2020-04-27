@@ -47,4 +47,54 @@ class PrimarySchoolRepository extends ServiceEntityRepository
         ;
     }
     */
+
+
+
+
+
+    public function searchprimschool($idiepp,$data, $page = 0, $max = NULL, $getResult = true)
+    {
+        $qb = $this->_em->createQueryBuilder();
+        $query = isset($data['query']) && $data['query']?$data['query']:null;
+
+        $qb
+            ->select('p')
+            ->from('App\Entity\PrimarySchool', 'p')
+            ->where("p.iepp=:iepp ")
+
+
+            ->setParameter('iepp', $idiepp)
+
+
+
+
+
+        ;
+
+        if ($query) {
+            $qb
+                ->andWhere('p.id like :query')
+                ->setParameter('query', "%".$query."%")
+            ;
+        }
+
+        if ($max) {
+            $preparedQuery = $qb->getQuery()
+                ->setMaxResults($max)
+                ->setFirstResult($page * $max)
+            ;
+        } else {
+            $preparedQuery = $qb->getQuery();
+        }
+
+        return $getResult?$preparedQuery->getResult():$preparedQuery;
+    }
+
+
+
+
+
+
+
+
 }

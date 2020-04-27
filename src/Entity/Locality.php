@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -26,6 +27,14 @@ class Locality
 
      */
     private $drenddn;
+
+
+
+
+
+
+
+
 
     /**
      * @return string
@@ -63,23 +72,7 @@ class Locality
         return $this;
     }
 
-    /**
-     * @return string
-     */
-    public function getLocality(): string
-    {
-        return $this->locality;
-    }
 
-    /**
-     * @param string $locality
-     * @return Locality
-     */
-    public function setLocality(string $locality): Locality
-    {
-        $this->locality = $locality;
-        return $this;
-    }
 
 
 
@@ -88,5 +81,57 @@ class Locality
      * @ORM\Column(name="localityname", type="string", length=255)
 
      */
-    private $locality;
+    private $localityname;
+
+    /**
+     * @return string
+     */
+    public function getLocalityname(): string
+    {
+        return $this->localityname;
+    }
+
+    /**
+     * @param string $localityname
+     * @return Locality
+     */
+    public function setLocalityname(string $localityname): Locality
+    {
+        $this->localityname = $localityname;
+        return $this;
+    }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getStudents(): ArrayCollection
+    {
+        return $this->students;
+    }
+
+    /**
+     * @param ArrayCollection $students
+     * @return Locality
+     */
+    public function setStudents(ArrayCollection $students): Locality
+    {
+        $this->students = $students;
+        return $this;
+    }
+
+
+
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Student", mappedBy="localities")
+     */
+    private $students;
+
+
+
+    public function __construct()
+    {
+        $this->students = new ArrayCollection();
+    }
+
 }

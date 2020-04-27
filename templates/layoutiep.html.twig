@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>{% block title %}SYGDOB-ESPACE CF IEPP{% endblock %}</title>
+    <title>{% block title %}SYGDOB-ESPACE  IEPP{% endblock %}</title>
     {% block stylesheets %}
 
 
@@ -61,7 +61,7 @@
                     <!-- ============================================================== -->
                     <!-- Logo -->
                     <!-- ============================================================== -->
-                    <a class="navbar-brand" href="{{ path('sygdob_dashboardcfiep') }}">
+                    <a class="navbar-brand" href="{{ path('sygdob_dashboardiep') }}">
                         <!-- Logo icon -->
 
 
@@ -212,12 +212,12 @@ MENETFP-DOB
                         <!-- User Profile-->
 
 
-                        <li class="sidebar-item"> <a class="btn waves-effect waves-light btn-light" href="{{ path('sygdob_dashboardcfiep') }}" ><i class="mdi mdi-microsoft"></i><span class="hide-menu">Tableau de Bord </span></a>
+                        <li class="sidebar-item"> <a class="btn waves-effect waves-light btn-light" href="{{ path('sygdob_dashboardiep') }}" ><i class="mdi mdi-microsoft"></i><span class="hide-menu">Tableau de Bord </span></a>
 
                         </li>
 
                         <li class="sidebar-item"> <a class="btn waves-effect waves-light btn-light"
-                                                     href="{{ path('sygdob_tablerecapeditcf') }}" ><i class="mdi mdi-format-line-weight"></i><span
+                                                     href="#" ><i class="mdi mdi-format-line-weight"></i><span
                                         class="hide-menu">Point des saisies</span></a></li>
 
                     </ul>
@@ -358,7 +358,7 @@ MENETFP-DOB
         $('#studentbyschool').DataTable({
 
 
-            "ajax": "{{ path('sygdob_listtablestudentbyschoolcf') }}",
+            "ajax": "{{ path('sygdob_listtablestudentbyschooliep') }}",
             "sAjaxDataProp": "data",
             "pageLength": 50,
             dom: 'Bfrtip',
@@ -389,6 +389,7 @@ MENETFP-DOB
                 {"data": "wish1"},
                 {"data": "wish2"},
                 {"data": "wish3"},
+                {"data": "valid"},
 
 
 

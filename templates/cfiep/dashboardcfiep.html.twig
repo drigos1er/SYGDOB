@@ -1,6 +1,6 @@
 {% extends 'layoutcfiep.html.twig' %}
 
-{% block title %}SYGDOB| TABLEAU DE BORD CF IEP{% endblock %}
+{% block title %}SYGDOB| TABLEAU DE BORD CF IEPP{% endblock %}
 
 {% block body %}
 
@@ -14,7 +14,7 @@
                     <div class="card-body">
                         <h3 class="card-title">Nos écoles </h3>
                         <h6 class="card-subtitle">Afficher la liste des élèves d'une école</h6>
-                        <form  action="{{ path('sygdob_tablestudentbyschoolcf') }}" method="post">
+                        <form  action="{{ path('sygdob_redirecttablestudentbyschoolcf') }}" method="post">
 
 
                             <div class="input-group mb-3">
@@ -43,13 +43,21 @@
                     <div class="card-body">
                         <h3 class="card-title">Elève </h3>
                         <h6 class="card-subtitle">Rechercher un élève par son matricule</h6>
-                        <form>
+                        {% for message in app.flashes('error')  %}
+                            <div class="alert alert-danger"> {{ message }}</div>
+                        {% endfor  %}
+                        {% for message in app.flashes('success')  %}
+                            <div class="alert alert-success"> {{ message }}</div>
+                        {% endfor  %}
+
+                        <form  action="{{ path('sygdob_redirecteditwishstudent') }}" method="post">
                             <div class="input-group mb-3">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="ti-user"></i></span>
                                 </div>
-                                <input type="text" class="form-control" placeholder="Entrer le matricule de l'élève"
-                                       aria-label="Amount (to the nearest dollar)">
+                                {{ form_widget(form2.id,{'attr': {'placeholder': 'Entrer le matricule ','class': 'form-control'}}) }}
+
+
                                 <div class="input-group-append">
                                     <button class="btn btn-success">Ok</button>
                                 </div>
@@ -63,14 +71,17 @@
                 <div class="card">
                     <div class="card-body">
                         <h3 class="card-title">Elève </h3>
-                        <h6 class="card-subtitle">Rechercher un élève par son matricule</h6>
-                        <form>
+                        <h6 class="card-subtitle">Rechercher un élève par son nom ou prénoms</h6>
+                        {% for message in app.flashes('successname')  %}
+                            <div class="alert alert-success"> {{ message }}</div>
+                        {% endfor  %}
+                        <form action="{{ path('sygdob_redirecttablestudentbyname') }}" method="post">
                             <div class="input-group mb-3">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="ti-search"></i></span>
                                 </div>
-                                <input type="text" class="form-control" placeholder="Entrer le nom de l'élève"
-                                       aria-label="Amount (to the nearest dollar)">
+                                <input type="text" class="form-control" placeholder="Entrer le nom ou le prénom "
+                                       name="stdname">
                                 <div class="input-group-append">
                                     <button class="btn btn-success">Ok</button>
                                 </div>

@@ -266,6 +266,15 @@ class SecurityController extends AbstractController
         }
 
 
+        if ($auth->isGranted('ROLE_IEPP')) {
+
+            $userrole= 'ROLE_IEPP';
+            $request->getSession()->set('userrole', $userrole);
+
+        }
+
+
+
         if ($auth->isGranted('ROLE_IEPPCF')) {
 
 
@@ -286,6 +295,27 @@ class SecurityController extends AbstractController
             return $this->redirectToRoute('sygdob_dashboardcfiep');
         }
 
+
+
+        if ($auth->isGranted('ROLE_IEPP')) {
+
+
+
+            $useriepp=$useriepprep->findOneByUserid($userprofile->getUsername());
+            $request->getSession()->set('useriepp', $useriepp);
+            $iepp=$iepprep->findOneById($useriepp->getIeppid());
+            $request->getSession()->set('iepp', $iepp);
+
+            $dren=$drenrepo->findOneById($iepp->getDrenddn()->getId());
+            $request->getSession()->set('dren', $dren);
+
+            if ($userprofile->getPassword()== '$2y$13$SbQbBqins5p2aAhynnf5De3IyLgEP5uY./zndm5oG.g.rPlmgEhK.') {
+                return $this->redirectToRoute('security_updpwd', array('id'=>$userprofile->getId()));
+            }
+
+
+            return $this->redirectToRoute('sygdob_dashboardiep');
+        }
 
 
 

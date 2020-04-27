@@ -5,6 +5,7 @@ namespace App\Repository;
 use App\Entity\Student;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\ORM\Query\ResultSetMapping;
 
 /**
  * @method Student|null find($id, $lockMode = null, $lockVersion = null)
@@ -88,6 +89,37 @@ class StudentRepository extends ServiceEntityRepository
     }
 
 
+    public function searchstudentname($iepp,$namestd)
+    {
 
+
+
+
+
+
+
+        $rsm = new ResultSetMapping();
+
+        $rsm->addScalarResult('id', 'id');
+
+
+
+        $sql = "SELECT id FROM `student` WHERE (`lastname` LIKE :namestd AND `iepp`=:iepp) || (`firstname` LIKE  :namestd  AND `iepp`=:iepp) ";
+        $query = $this->_em->createNativeQuery($sql, $rsm);
+        $query->setParameter('iepp', $iepp );
+        $query->setParameter('namestd',  '%'.$namestd. '%' );
+
+
+
+
+
+        $studname = $query->getResult();
+
+
+        return $studname;
+
+
+
+    }
 
 }
