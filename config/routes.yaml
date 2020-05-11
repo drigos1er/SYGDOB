@@ -5,6 +5,24 @@ security_registration:
   path:     /register
   defaults: { _controller: App\Controller\SecurityController::registration }
 
+security_registrationiepp:
+  path:     /registeriepp
+  defaults: { _controller: App\Controller\SecurityController::registrationiepp }
+
+
+
+security_registrationdcio:
+  path:     /registerdcio
+  defaults: { _controller: App\Controller\SecurityController::registrationdcio }
+
+
+
+
+security_registrationdob:
+  path:     /registerdob
+  defaults: { _controller: App\Controller\SecurityController::registrationdob }
+
+
 security_login:
   path:     /login
   defaults: { _controller: App\Controller\SecurityController::login }
@@ -180,3 +198,584 @@ sygdob_listtablestudentbyschooliep:
   path:     /ieparea/listtablestudentbyschooliep
   defaults: { _controller: App\Controller\IeppController::listtablestudentbyschooliep }
 
+
+
+
+
+sygdob_tablerecapwishiep:
+  path:     /ieparea/tablerecapwishiep
+  defaults: { _controller: App\Controller\IeppController::tablerecapwishiep }
+
+
+
+
+
+
+sygdob_tablerecapwishbyschool:
+  path:     /ieparea/tablerecapwishbyschool
+  defaults: { _controller: App\Controller\IeppController::tablerecapwishbyschool }
+
+
+
+sygdob_listtablerecapwishbyschool:
+  path:     /ieparea/listtablerecapwishbyschool
+  defaults: { _controller: App\Controller\IeppController::listtablerecapwishbyschool}
+
+
+
+
+
+
+sygdob_validwishschool:
+  path:     /ieparea/validwishschool
+  defaults: { _controller: App\Controller\IeppController::validwishschool }
+
+
+
+sygdob_unvalidwishschool:
+  path:     /ieparea/unvalidwishschool
+  defaults: { _controller: App\Controller\IeppController::unvalidwishschool }
+
+
+
+
+
+sygdob_tablestudentbynameiep:
+  path:     /ieparea/tablestudentbynameiep
+  defaults: { _controller: App\Controller\IeppController::tablestudentbynameiep }
+
+
+
+
+sygdob_redirecttablestudentbynameiep:
+  path:     /ieparea/redirectablestudentbynameiep
+  defaults: { _controller: App\Controller\IeppController::redirecttablestudentbynameiep }
+
+
+
+sygdob_listtablestudentbynameiep:
+  path:     /ieparea/listtablestudentbynameiep
+  defaults: { _controller: App\Controller\IeppController::listtablestudentbynameiep }
+
+
+
+
+
+sygdob_tablestudentbymatiep:
+  path:     /ieparea/tablestudentbymatiep
+  defaults: { _controller: App\Controller\IeppController::tablestudentbymatiep }
+
+
+
+
+sygdob_redirecttablestudentbymatiep:
+  path:     /ieparea/redirectablestudentbymatiep
+  defaults: { _controller: App\Controller\IeppController::redirecttablestudentbymatiep }
+
+
+
+sygdob_listtablestudentbymatiep:
+  path:     /ieparea/listtablestudentbymatiep
+  defaults: { _controller: App\Controller\IeppController::listtablestudentbymatiep }
+
+
+
+
+
+sygdob_dashboarddcio:
+  path:     /dcioarea/dashboarddcio
+  defaults: { _controller: App\Controller\DcioController::dashboarddcio }
+
+
+
+
+
+sygdob_tablerecapwishdcio:
+  path:     /dcioarea/tablerecapwishdcio
+  defaults: { _controller: App\Controller\DcioController::tablerecapwishcio }
+
+
+
+
+sygdob_tablerecapwishbyiep:
+  path:     /dcioarea/tablerecapwishbyiep
+  defaults: { _controller: App\Controller\DcioController::tablerecapwishbyiep }
+
+
+
+sygdob_listtablerecapwishbyiep:
+  path:     /dcioarea/listtablerecapwishbyiep
+  defaults: { _controller: App\Controller\DcioController::listtablerecapwishbyiep}
+
+
+
+
+
+sygdob_redirecttablerecapwishbyschoolcio:
+  path:     /dcioarea/redirecttablerecapwishbyschoolcio
+  defaults: { _controller: App\Controller\DcioController::redirecttablerecapwishbyschoolcio }
+
+
+
+
+sygdob_tablerecapwishbyschoolcio:
+  path:     /dcioarea/tablerecapwishbyschoolcio
+  defaults: { _controller: App\Controller\DcioController::tablerecapwishbyschoolcio }
+
+
+
+sygdob_listtablerecapwishbyschoolcio:
+  path:     /dcioarea/listtablerecapwishbyschoolcio
+  defaults: { _controller: App\Controller\DcioController::listtablerecapwishbyschoolcio}
+
+
+
+sygdob_dashboarddobinfo:
+  path:     /dobinfoarea/dashboarddobinfo
+  defaults: { _controller: App\Controller\DobinfoController::dashboarddobinfo }
+
+
+
+
+sygdob_tablerecapwishdobinfo:
+  path:     /dobinfoarea/tablerecapwishdobinfo
+  defaults: { _controller: App\Controller\DobinfoController::tablerecapwishdobinfo }
+
+
+
+
+
+
+sygdob_tablerecapwishbydren:
+  path:     /dobinfoarea/tablerecapwishbydren
+  defaults: { _controller: App\Controller\DobinfoController::tablerecapwishbydren }
+
+
+
+sygdob_listtablerecapwishbydren:
+  path:     /dobinfoarea/listtablerecapwishbydren
+  defaults: { _controller: App\Controller\DobinfoController::listtablerecapwishbydren}
+
+
+
+
+sygdob_redirecttablerecapwishbyiepdob:
+  path:     /dobinfoarea/redirecttablerecapwishbyiepdob
+  defaults: { _controller: App\Controller\DobinfoController::redirecttablerecapwishbyiepdob }
+
+
+
+
+sygdob_tablerecapwishbyiepdob:
+  path:     /dobinfoarea/tablerecapwishbyiepdob
+  defaults: { _controller: App\Controller\DobinfoController::tablerecapwishbyiepdob }
+
+
+
+sygdob_listtablerecapwishbyiepdob:
+  path:     /dobinfoarea/listtablerecapwishbyiepdob
+  defaults: { _controller: App\Controller\DobinfoController::listtablerecapwishbyiepdob}
+
+
+
+
+sygdob_redirecttablerecapwishbyschooldob:
+  path:     /dobinfoarea/redirecttablerecapwishbyschooldob
+  defaults: { _controller: App\Controller\DobinfoController::redirecttablerecapwishbyschooldob }
+
+
+
+
+sygdob_tablerecapwishbyschooldob:
+  path:     /dobinfoarea/tablerecapwishbyschooldob
+  defaults: { _controller: App\Controller\DobinfoController::tablerecapwishbyschooldob }
+
+
+
+sygdob_listtablerecapwishbyschooldob:
+  path:     /dobinfoarea/listtablerecapwishbyschooldob
+  defaults: { _controller: App\Controller\DobinfoController::listtablerecapwishbyschooldob}
+
+
+
+sygdob_viewuserdob:
+  path:     /dobinfoarea/viewuserdob
+  defaults: { _controller: App\Controller\DobinfoController::viewuserdob}
+
+
+
+sygdob_tableviewuserdob:
+  path:     /dobinfoarea/tableviewuserdob
+  defaults: { _controller: App\Controller\DobinfoController::tableviewuserdob}
+
+
+
+
+sygdob_deactivateuserdob:
+  path:     /deactivateuserdob
+  defaults: { _controller: App\Controller\DobinfoController::deactivateuserdob}
+
+
+sygdob_activateuserdob:
+  path:     /activateuserdob
+  defaults: { _controller: App\Controller\DobinfoController::activateuserdob}
+
+
+
+sygdob_resetuserdob:
+  path:     /resetuserdob
+  defaults: { _controller: App\Controller\DobinfoController::resetuserdob}
+
+
+
+
+
+sygdob_deleteuserdob:
+  path:     /deleteuserdob
+  defaults: { _controller: App\Controller\DobinfoController::deleteuserdob}
+
+
+
+
+
+sygdob_dashboarddobadmin:
+  path:     /dobadminarea/dashboarddobadmin
+  defaults: { _controller: App\Controller\DobadminController::dashboarddobadmin }
+
+
+
+
+sygdob_tablerecapwishdobadmin:
+  path:     /dobadminarea/tablerecapwishdobadmin
+  defaults: { _controller: App\Controller\DobadminController::tablerecapwishdobadmin }
+
+
+
+
+sygdob_tablerecapwishbydrendobadm:
+  path:     /dobadminarea/tablerecapwishbydrendobadm
+  defaults: { _controller: App\Controller\DobadminController::tablerecapwishbydrendobadm }
+
+
+
+sygdob_listtablerecapwishbydrendobadm:
+  path:     /dobadminarea/listtablerecapwishbydrendobadm
+  defaults: { _controller: App\Controller\DobadminController::listtablerecapwishbydrendobadm}
+
+
+
+
+
+sygdob_redirecttablerecapwishbyiepdobadm:
+  path:     /dobadminarea/redirecttablerecapwishbyiepdobadm
+  defaults: { _controller: App\Controller\DobadminController::redirecttablerecapwishbyiepdobadm }
+
+
+
+
+sygdob_tablerecapwishbyiepdobadm:
+  path:     /dobadminarea/tablerecapwishbyiepdobadm
+  defaults: { _controller: App\Controller\DobadminController::tablerecapwishbyiepdobadm }
+
+
+
+sygdob_listtablerecapwishbyiepdobadm:
+  path:     /dobadminarea/listtablerecapwishbyiepdobadm
+  defaults: { _controller: App\Controller\DobadminController::listtablerecapwishbyiepdobadm}
+
+
+
+
+sygdob_redirecttablerecapwishbyschooldobadm:
+  path:     /dobadminarea/redirecttablerecapwishbyschooldobadm
+  defaults: { _controller: App\Controller\DobadminController::redirecttablerecapwishbyschooldobadm }
+
+
+
+
+sygdob_tablerecapwishbyschooldobadm:
+  path:     /dobadminarea/tablerecapwishbyschooldobadm
+  defaults: { _controller: App\Controller\DobadminController::tablerecapwishbyschooldobadm }
+
+
+
+sygdob_listtablerecapwishbyschooldobadm:
+  path:     /dobadminarea/listtablerecapwishbyschooldobadm
+  defaults: { _controller: App\Controller\DobadminController::listtablerecapwishbyschooldobadm}
+
+
+
+
+
+
+sygdob_viewuserdobadm:
+  path:     /dobadminarea/viewuserdobadm
+  defaults: { _controller: App\Controller\DobadminController::viewuserdobadm}
+
+
+
+sygdob_tableviewuserdobadm:
+  path:     /dobadminarea/tableviewuserdobadm
+  defaults: { _controller: App\Controller\DobadminController::tableviewuserdobadm}
+
+
+
+
+
+sygdob_insertstudent:
+  path:     /dobadminarea/insertstudent
+  defaults: { _controller: App\Controller\DobadminController::insertstudent}
+
+
+
+
+sygdob_mateditstudent:
+  path:     /dobadminarea/mateditstudent
+  defaults: { _controller: App\Controller\DobadminController::mateditstudent}
+
+
+
+sygdob_editstudent:
+  path:     /dobadminarea/editstudent
+  defaults: { _controller: App\Controller\DobadminController::editstudent}
+
+
+
+sygdob_insertschool:
+  path:     /dobadminarea/insertschool
+  defaults: { _controller: App\Controller\DobadminController::insertschool}
+
+
+
+
+sygdob_usermanagmt:
+  path:     /dobadminarea/usermanagmt
+  defaults: { _controller: App\Controller\DobadminController::usermanagmt}
+
+
+
+
+
+
+sygdob_redirecttableuserbyiep:
+  path:     /dobadminarea/redirecttableuserbyiep
+  defaults: { _controller: App\Controller\DobadminController::redirecttableuserbyiep}
+
+
+
+sygdob_tableuserbyiep:
+  path:     /dobadminarea/tableuserbyiep
+  defaults: { _controller: App\Controller\DobadminController::tableuserbyiep}
+
+
+sygdob_listtableuserbyiep:
+  path:     /dobadminarea/listtableuserbyiep
+  defaults: { _controller: App\Controller\DobadminController::listtableuserbyiep}
+
+
+
+
+
+sygdob_deactivateuserdobiep:
+  path:     /deactivateuserdobiep
+  defaults: { _controller: App\Controller\DobadminController::deactivateuserdobiep}
+
+
+sygdob_activateuserdobiep:
+  path:     /activateuserdobiep
+  defaults: { _controller: App\Controller\DobadminController::activateuserdobiep}
+
+
+
+sygdob_resetuserdobiep:
+  path:     /resetuserdobiep
+  defaults: { _controller: App\Controller\DobadminController::resetuserdobiep}
+
+
+
+
+
+sygdob_deleteuserdobiep:
+  path:     /deleteuserdobiep
+  defaults: { _controller: App\Controller\DobadminController::deleteuserdobiep}
+
+
+sygdob_alertdeleteuseriep:
+  path:     /alertedeleteuseriep
+  defaults: { _controller: App\Controller\DobadminController::alertedeleteuseriep}
+
+
+
+
+
+sygdob_redirecttableuserbydren:
+  path:     /dobadminarea/redirecttableuserbydren
+  defaults: { _controller: App\Controller\DobadminController::redirecttableuserbydren}
+
+
+
+sygdob_tableuserbydren:
+  path:     /dobadminarea/tableuserbydren
+  defaults: { _controller: App\Controller\DobadminController::tableuserbydren}
+
+
+sygdob_listtableuserbydren:
+  path:     /dobadminarea/listtableuserbydren
+  defaults: { _controller: App\Controller\DobadminController::listtableuserbydren}
+
+
+
+
+
+sygdob_deactivateuserdobdren:
+  path:     /deactivateuserdobdren
+  defaults: { _controller: App\Controller\DobadminController::deactivateuserdobdren}
+
+
+sygdob_activateuserdobdren:
+  path:     /activateuserdobdren
+  defaults: { _controller: App\Controller\DobadminController::activateuserdobdren}
+
+
+
+sygdob_resetuserdobdren:
+  path:     /resetuserdobdren
+  defaults: { _controller: App\Controller\DobadminController::resetuserdobdren}
+
+
+
+
+
+sygdob_deleteuserdobdren:
+  path:     /deleteuserdobdren
+  defaults: { _controller: App\Controller\DobadminController::deleteuserdobdren}
+
+
+sygdob_alertdeleteuserdren:
+  path:     /alertedeleteuserdren
+  defaults: { _controller: App\Controller\DobadminController::alertedeleteuserdren}
+
+
+
+
+
+
+
+sygdob_redirecttableuserbystruct:
+  path:     /dobadminarea/redirecttableuserbystruct
+  defaults: { _controller: App\Controller\DobadminController::redirecttableuserbystruct}
+
+
+
+sygdob_tableuserbystruct:
+  path:     /dobadminarea/tableuserbystruct
+  defaults: { _controller: App\Controller\DobadminController::tableuserbystruct}
+
+
+sygdob_listtableuserbystruct:
+  path:     /dobadminarea/listtableuserbystruct
+  defaults: { _controller: App\Controller\DobadminController::listtableuserbystruct}
+
+
+
+
+
+sygdob_deactivateuserdobstruct:
+  path:     /deactivateuserdobstruct
+  defaults: { _controller: App\Controller\DobadminController::deactivateuserdobstruct}
+
+
+sygdob_activateuserdobstruct:
+  path:     /activateuserdobstruct
+  defaults: { _controller: App\Controller\DobadminController::activateuserdobstruct}
+
+
+
+sygdob_resetuserdobstruct:
+  path:     /resetuserdobstruct
+  defaults: { _controller: App\Controller\DobadminController::resetuserdobstruct}
+
+
+
+
+
+sygdob_deleteuserdobstruct:
+  path:     /deleteuserdobstruct
+  defaults: { _controller: App\Controller\DobadminController::deleteuserdobstruct}
+
+
+sygdob_alertdeleteuserstruct:
+  path:     /alertedeleteuserstruct
+  defaults: { _controller: App\Controller\DobadminController::alertedeleteuserstruct}
+
+
+
+
+
+
+
+sygdob_redirecttableuserbymat:
+  path:     /dobadminarea/redirecttableuserbymat
+  defaults: { _controller: App\Controller\DobadminController::redirecttableuserbymat}
+
+
+
+
+
+
+
+sygdob_usermanagmtdobinfo:
+  path:     /dobinfoarea/usermanagmtdobinfo
+  defaults: { _controller: App\Controller\DobinfoController::usermanagmtdobinfo}
+
+
+
+
+
+
+sygdob_redirecttableuserbyiepdobinfo:
+  path:     /dobinfoarea/redirecttableuserbyiepdobinfo
+  defaults: { _controller: App\Controller\DobinfoController::redirecttableuserbyiepdobinfo}
+
+
+
+sygdob_tableuserbyiepdobinfo:
+  path:     /dobinfoarea/tableuserbyiepdobinfo
+  defaults: { _controller: App\Controller\DobinfoController::tableuserbyiepdobinfo}
+
+
+sygdob_listtableuserbyiepdobinfo:
+  path:     /dobinfoarea/listtableuserbyiepdobinfo
+  defaults: { _controller: App\Controller\DobinfoController::listtableuserbyiepdobinfo}
+
+
+
+
+
+sygdob_deactivateuserdobiepdobinfo:
+  path:     /deactivateuserdobiepdobinfo
+  defaults: { _controller: App\Controller\DobinfoController::deactivateuserdobiepdobinfo}
+
+
+sygdob_activateuserdobiepdobinfo:
+  path:     /activateuserdobiepdobinfo
+  defaults: { _controller: App\Controller\DobinfoController::activateuserdobiepdobinfo}
+
+
+
+sygdob_resetuserdobiepdobinfo:
+  path:     /resetuserdobiepdobinfo
+  defaults: { _controller: App\Controller\DobinfoController::resetuserdobiepdobinfo}
+
+
+
+
+
+sygdob_deleteuserdobiepdobinfo:
+  path:     /deleteuserdobiepdobinfo
+  defaults: { _controller: App\Controller\DobinfoController::deleteuserdobiepdobinfo}
+
+
+sygdob_alertdeleteuseriepdobinfo:
+  path:     /alertedeleteuseriepdobinfo
+  defaults: { _controller: App\Controller\DobinfoController::alertedeleteuseriepdobinfo}

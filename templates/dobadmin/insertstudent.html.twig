@@ -1,0 +1,228 @@
+{% extends 'layoutdobadmin.html.twig' %}
+
+{% block title %}SYGDOB| Saisie  Elèves{% endblock %}
+
+{% block body %}
+    <div class="container-fluid">
+
+        <!-- Row -->
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card ">
+                    <div class="card-header bg-info">
+                        <h4 class="card-title text-white text-center">SAISIE ELEVE </h4>
+
+
+
+                    </div>
+
+                        {{ form_start(form,{'attr': {'class': 'form-horizontal'}}) }}
+                        <div class="form-body">
+                            {% for message in app.flashes('error')  %}
+                                <div class="alert alert-danger"> {{ message }}</div>
+                            {% endfor  %}
+
+                            <div class="card-body">
+
+                                <h6 class="card-title"><i class="mdi mdi-home"></i>ADMINISTRATION SCOLAIRE</h6>
+                                <hr class="mt-0 mb-5">
+                            </div>
+
+
+
+                            <div class="card-body">
+                                <div class="row" style="margin-top: -71px;">
+
+
+
+                                    <div class="col-md-5">
+                                        <div class="form-group  row">
+                                            <label class="control-label text-right col-md-3">DRENETFP</label>
+                                            <div class="col-md-9">
+                                                {{ form_widget(form.dren,{'attr': {'class': 'select2 form-control custom-select'}}) }}
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group row">
+                                            <label class="control-label text-right col-md-3">IEPP</label>
+                                            <div class="col-md-9">
+
+                                                {{ form_widget(form.iepp,{'attr': {'class': 'select2 form-control custom-select'}}) }}
+
+
+                                            </div>
+
+
+
+
+
+
+
+
+
+
+                                        </div>
+                                    </div>
+                                    <!--/span-->
+                                    <div class="col-md-4">
+                                        <div class="form-group  row">
+                                            <label class="control-label text-right col-md-3">Ecole</label>
+                                            <div class="col-md-9">
+
+
+                                                {{ form_widget(form.school,{'id': 'inputEmail3','attr': {'placeholder': 'Code de l\'école ','class': 'form-control'}}) }}
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+
+                                    <!--/span-->
+                                </div>
+                                <!--/row-->
+
+
+                                <!--/row-->
+                                <br>
+                                <h6 class="card-title "><i class="mdi mdi-face"></i>IDENTITE DU CANDIDAT</h6>
+
+
+                                <hr class="mt-0 mb-5">
+                            </div>
+
+
+
+
+
+
+
+
+
+
+                            <div class="card-body">
+                                <div class="row" style="margin-top: -71px;">
+                                    <div class="col-md-4">
+                                        <div class="form-group row">
+                                            <label class="control-label text-right col-md-3">Matricule</label>
+                                            <div class="col-md-9">
+
+
+
+                                            {{ form_widget(form.id,{'id': 'inputEmail3','attr': {'placeholder': 'Matricule ','class': 'form-control'}}) }}
+
+
+
+
+
+
+
+                                        </div>
+                                            <div style="color: red">
+                                                {{ form_errors(form.id) }}
+                                            </div>
+                                    </div>
+
+                                    <!--/span-->
+                                </div>
+
+                                    <!--/span-->
+                                    <div class="col-md-4">
+                                        <div class="form-group  row">
+                                            <label class="control-label text-right col-md-3">Nom</label>
+                                            <div class="col-md-9">
+
+
+                                                {{ form_widget(form.firstname,{'id': 'inputEmail3','attr': {'placeholder': 'Nom ','class': 'form-control'}}) }}
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="col-md-4">
+                                        <div class="form-group  row">
+                                            <label class="control-label text-right col-md-3">Prénoms</label>
+                                            <div class="col-md-9">
+
+                                                {{ form_widget(form.lastname,{'id': 'inputEmail3','attr': {'placeholder': 'Prénoms ','class': 'form-control'}}) }}
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+
+                                    <div class="col-md-4">
+                                        <div class="form-group row">
+                                            <label class="control-label text-right col-md-3">Date de Naissance</label>
+                                            <div class="col-md-9">
+                                                {{ form_widget(form.birthdate) }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group row">
+                                            <label class="control-label text-right col-md-3">Lieu de Naissance</label>
+                                            <div class="col-md-9">
+                                                {{ form_widget(form.placeofbirth,{'id': 'inputEmail3','attr': {'placeholder': 'Lieu de Naissance ','class': 'form-control'}}) }}
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="col-md-4">
+                                        <div class="form-group row">
+                                            <label class="control-label text-right col-md-3">Genre</label>
+                                            <div class="col-md-9">
+                                                {{ form_widget(form.kind,{'id': 'inputEmail3','attr': {'placeholder': 'Lieu de Naissance ','class': 'form-control'}}) }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group row">
+                                            <label class="control-label text-right col-md-3">Nationalité</label>
+                                            <div class="col-md-9">
+                                                {{ form_widget(form.nationality,{'id': 'inputEmail3','attr': {'placeholder': 'Lieu de Naissance ','class': 'form-control'}}) }}
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                            </div>
+
+
+
+
+                            <div class="form-actions">
+                                <div class="card-body">
+                                    <div class="text-center">
+                                        <button type="submit" class="btn btn-success">Enregistrer</button>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {{ form_end(form) }}
+                </div>
+            </div>
+        </div>
+        <!-- End Row -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </div>
+{% endblock %}

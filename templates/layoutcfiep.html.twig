@@ -444,6 +444,19 @@ MENETFP-DOB
             "ajax": "{{ path('sygdob_listtablerecapeditcf') }}",
             "sAjaxDataProp": "data",
             "pageLength": 50,
+            dom: 'Bfrtip',
+            buttons: [
+                {
+                    extend: 'excel',
+                    text: 'Telecharger en Excel',
+                    buttons: [
+
+                        'excel'
+
+
+                    ]
+                }
+            ],
 
             "columns":[
 

@@ -4,9 +4,14 @@ namespace App\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\SecondarySchoolRepository")
+ * @UniqueEntity(fields={"id"},
+ * message="Ce code est dejà utilisé "
+ * )
  */
 class SecondarySchool
 {
@@ -86,90 +91,90 @@ class SecondarySchool
 
 
     /**
-     * @return string
+     *
      */
-    public function getId(): string
+    public function getId()
     {
         return $this->id;
     }
 
     /**
-     * @param string $id
+     *
      * @return SecondarySchool
      */
-    public function setId(string $id): SecondarySchool
+    public function setId($id): SecondarySchool
     {
         $this->id = $id;
         return $this;
     }
 
     /**
-     * @return string
+     *
      */
-    public function getSchoolname(): string
+    public function getSchoolname()
     {
         return $this->schoolname;
     }
 
     /**
-     * @param string $schoolname
+     *
      * @return SecondarySchool
      */
-    public function setSchoolname(string $schoolname): SecondarySchool
+    public function setSchoolname($schoolname): SecondarySchool
     {
         $this->schoolname = $schoolname;
         return $this;
     }
 
     /**
-     * @return string
+     *
      */
-    public function getSchooltype(): string
+    public function getSchooltype()
     {
         return $this->schooltype;
     }
 
     /**
-     * @param string $schooltype
+     *
      * @return SecondarySchool
      */
-    public function setSchooltype(string $schooltype): SecondarySchool
+    public function setSchooltype($schooltype): SecondarySchool
     {
         $this->schooltype = $schooltype;
         return $this;
     }
 
     /**
-     * @return string
+     *
      */
-    public function getSchoolkind(): string
+    public function getSchoolkind()
     {
         return $this->schoolkind;
     }
 
     /**
-     * @param string $schoolkind
+     * @param
      * @return SecondarySchool
      */
-    public function setSchoolkind(string $schoolkind): SecondarySchool
+    public function setSchoolkind( $schoolkind): SecondarySchool
     {
         $this->schoolkind = $schoolkind;
         return $this;
     }
 
     /**
-     * @return string
+     *
      */
-    public function getTown(): string
+    public function getTown()
     {
         return $this->town;
     }
 
     /**
-     * @param string $town
+     *
      * @return SecondarySchool
      */
-    public function setTown(string $town): SecondarySchool
+    public function setTown($town): SecondarySchool
     {
         $this->town = $town;
         return $this;

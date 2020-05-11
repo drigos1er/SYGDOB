@@ -1,0 +1,281 @@
+{% extends 'layoutdobadmin.html.twig' %}
+
+{% block title %}SYGDOB| Consultation utilisateur{% endblock %}
+
+{% block body %}
+    <div class="container-fluid">
+
+
+
+
+
+
+        <!-- complex headers -->
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title text-center">CONSULTATION  COMPTES UTILISATEURS  </h4>
+                        {% for message in app.flashes('success')  %}
+                            <div class="alert alert-success"> {{ message }}</div>
+                        {% endfor  %}
+                        <div class="table-responsive">
+                            <table id="complex_header" class="table  table-bordered display text-center "
+                                   style="width:100%">
+                                <thead class="bg-info text-white">
+                                <tr>
+                                    <th ></th>
+                                    <th >Nom d'utilisateur </th>
+                                    <th >Nom</th>
+                                    <th >Prénoms</th>
+                                    <th >Téléphone</th>
+                                    <th >Email</th>
+                                    <th >Rôle</th>
+                                    <th >Structure</th>
+                                    <th>Statut</th>
+                                    <th>Réinitialiser</th>
+                                    <th>Supprimer</th>
+                                </tr>
+
+                                </thead>
+                                <tbody>
+                                <tr class="text-dark bg-light-success">
+                                    <td>
+
+                                        {% if userpro.picture =="" %}
+                                            <img src="{{ asset('build/content/images/default-avatar.png') }}" alt="user" width="30" class="profile-pic rounded-circle" />
+
+                                        {% endif %}
+
+                                        {% if userpro.picture !="" %}
+
+                                            <img src="/SYGDOB/public/images/users/{{userpro.picture }}" alt="user" width="30" class="profile-pic rounded-circle"  />
+
+
+                                        {% endif %}
+
+
+
+
+                                    </td>
+                                    <td>{{ userpro.username }}</td>
+                                    <td>{{ userpro.firstname }}</td>
+                                    <td>{{ userpro.lastname }}</td>
+                                    <td>{{ userpro.phone }}</td>
+                                    <td>{{ userpro.email }}</td>
+                                    <td>
+
+                                        {% if app.session.get('userole').title =='ROLE_IEPPCF' %}
+
+                                            Correspondant Fichier
+                                        {% endif %}
+
+
+                                        {% if app.session.get('userole').title =='ROLE_IEPP' %}
+
+                                           IEPP
+                                        {% endif %}
+
+
+
+                                        {% if app.session.get('userole').title =='ROLE_CIO' %}
+
+                                            Correspondant CIO
+                                        {% endif %}
+
+
+
+                                        {% if app.session.get('userole').title =='ROLE_DCIO' %}
+
+                                            DCIO
+                                        {% endif %}
+
+
+
+                                        {% if app.session.get('userole').title =='ROLE_DOBINFO' %}
+
+                                            Informaticien DOB
+                                        {% endif %}
+
+
+                                        {% if app.session.get('userole').title =='ROLE_ADMINDOB' %}
+
+                                            Administrateur
+                                        {% endif %}
+
+
+                                        {% if app.session.get('userole').title =='ROLE_USERDEEP' %}
+
+                                            Utilisateur DEEP
+                                        {% endif %}
+
+
+                                        {% if app.session.get('userole').title =='ROLE_USERDOB' %}
+
+                                            Secrétariat DOB
+                                        {% endif %}
+
+
+
+                                        {% if app.session.get('userole').title =='ROLE_USERPOSTDOB' %}
+
+                                            Utilisateur POST CNO
+                                        {% endif %}
+
+
+                                    </td>
+
+
+
+
+                                    <td>
+                                        {% if app.session.get('userole').title =='ROLE_IEPPCF' %}
+
+                                           IEPP: {{ app.session.get('useriep').ieppname }}
+                                        {% endif %}
+
+
+                                        {% if app.session.get('userole').title =='ROLE_IEPP' %}
+
+                                           IEPP: {{ app.session.get('useriep').ieppname }}
+                                        {% endif %}
+
+
+                                        {% if app.session.get('userole').title =='ROLE_CIO' %}
+
+                                           DRENETFP: {{ app.session.get('useriep').drenname }}
+                                        {% endif %}
+
+
+                                        {% if app.session.get('userole').title =='ROLE_DCIO' %}
+
+                                           DRENETFP: {{ app.session.get('useriep').drenname }}
+                                        {% endif %}
+
+
+                                        {% if app.session.get('userole').title =='ROLE_DOBINFO' %}
+
+                                             {{ app.session.get('useriep')}}
+                                        {% endif %}
+
+
+                                        {% if app.session.get('userole').title =='ROLE_ADMINDOB' %}
+
+                                            {{ app.session.get('useriep')}}
+                                        {% endif %}
+
+
+                                        {% if app.session.get('userole').title =='ROLE_USERDEEP' %}
+
+                                            {{ app.session.get('useriep')}}
+                                        {% endif %}
+
+
+                                        {% if app.session.get('userole').title =='ROLE_USERDOB' %}
+
+                                            {{ app.session.get('useriep')}}
+                                        {% endif %}
+
+
+
+                                        {% if app.session.get('userole').title =='ROLE_USERPOSTDOB' %}
+
+                                            {{ app.session.get('useriep')}}
+                                        {% endif %}
+
+
+
+                                    </td>
+
+                                    <td>
+
+                                        {% if userpro.enabled =='1' %}
+
+
+                                            <a href="{{ path('sygdob_deactivateuserdob') }}" type="button"
+                                               class="btn waves-effect waves-light btn-success text-center" title="Cliquer pour désactiver le compte"><i class="mdi mdi-account-check "></i></a>
+
+                                        {% endif %}
+
+                                        {% if userpro.enabled !='1' %}
+                                            <a href="{{ path('sygdob_activateuserdob') }}" type="button"
+                                               class="btn waves-effect waves-light btn-danger text-center" title="Cliquer pour activer le compte"><i class="mdi mdi-account-off "></i></a>
+
+
+
+
+
+
+
+
+                                        {% endif %}
+
+
+
+
+
+                           </td>
+
+
+                                    <td><a href="{{ path('sygdob_resetuserdob') }}" type="button"
+                                           class="btn waves-effect waves-light btn-warning text-center" title="Cliquer pour réinitialiser le compte"><i class="mdi mdi-account-convert"></i></a></td>
+
+
+
+
+                                    <td>
+
+
+                                        <button type="button" class="btn btn-danger" data-toggle="modal"
+                                                data-target="#warning-header-modal-user"><i class="mdi mdi-account-remove"></i></button>
+
+
+
+
+
+                                      </td>
+                                </tr>
+
+                                </tbody>
+
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+            <!-- Warning Header Modal -->
+            <div id="warning-header-modal-user" class="modal fade" tabindex="-1" role="dialog"
+                 aria-labelledby="warning-header-modalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header modal-colored-header bg-warning">
+                            <h4 class="modal-title text-white" id="warning-header-modalLabel"><i class="fa fa-warning"></i>Suppression de Compte
+                            </h4>
+                            <button type="button" class="close" data-dismiss="modal"
+                                    aria-hidden="true">×</button>
+                        </div>
+                        <div class="modal-body">
+                            <h5 class="mt-0"></h5>
+
+                            <p>Voulez vous supprimer définitivement ce compte ?</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-light"
+                                    data-dismiss="modal">Non</button>
+                            <a href="{{ path('sygdob_deleteuserdob') }}" type="button" class="btn btn-warning">Oui</a>
+                        </div>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+            </div><!-- /.modal -->
+
+        </div>
+
+
+
+    </div>
+{% endblock %}

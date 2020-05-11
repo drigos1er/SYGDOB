@@ -1,0 +1,54 @@
+{% extends 'layoutdcio.html.twig' %}
+
+{% block title %}SYGDOB| Point des saisies par école{% endblock %}
+
+{% block body %}
+    <div class="container-fluid">
+
+
+
+
+
+
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title text-center">POINT DES SAISIES PAR ECOLE : IEPP <span style="color: black">{{ app.session.get('ieppnamebyschool') }} </span> </h4>
+
+
+                        {% for message in app.flashes('success')  %}
+                            <div class="alert alert-success"> {{ message }}</div>
+                        {% endfor  %}
+
+
+                        <div class="table-responsive">
+                            <div class="text-center"><a href="{{ path('sygdob_tablerecapwishbyiep') }}" type="button"
+                                                             class="btn waves-effect waves-light btn-warning text-center"><i class="mdi mdi-reply-all"></i>Retour au point par IEPP</a></div>
+
+                            <table  class="table table-hover table-bordered table-striped table-sm mb-0 display" id="schoolbyiep" style="width:100%">
+                                <thead class="bg-info text-white">
+                                <tr>
+                                    <th>Ecole</th>
+                                    <th>Nombre de candidats</th>
+                                    <th>Nombre de candidats avec voeux saisis</th>
+                                    <th>Taux de  saisis</th>
+
+
+                                </tr>
+                                </thead>
+                                <tbody>
+
+                                </tbody>
+
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+    </div>
+{% endblock %}

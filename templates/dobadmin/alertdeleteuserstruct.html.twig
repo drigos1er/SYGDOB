@@ -1,0 +1,46 @@
+{% extends 'layoutdobadmin.html.twig' %}
+
+{% block title %}SYGDOB| Suppression d'utilisateurs{% endblock %}
+
+{% block body %}
+    <div class="container-fluid">
+
+
+
+
+
+
+        <div class="row">
+
+
+            <!-- Warning Header Modal -->
+            <div id="warning-header-modal-dren" class="modal fade" tabindex="-1" role="dialog"
+                 aria-labelledby="warning-header-modalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header modal-colored-header bg-danger">
+                            <h4 class="modal-title text-white" id="warning-header-modalLabel"><i class="fa fa-warning"></i>Suppression de Compte
+                            </h4>
+                            <button type="button" class="close" data-dismiss="modal"
+                                    aria-hidden="true">×</button>
+                        </div>
+                        <div class="modal-body">
+                            <h5 class="mt-0"></h5>
+
+                            <p>Voulez vous supprimer définitivement le compte  <pan class="text-danger">{{login  }}</pan> ?</p>
+                        </div>
+                        <div class="modal-footer">
+                            <a href="{{ path('sygdob_tableuserbystruct') }}" type="button" class="btn btn-light"
+                                    >Non</a>
+                            <a href="{{absolute_url(path('sygdob_deleteuserdobstruct',{'login': login, 'id': id}))}}" type="button" class="btn btn-danger">Oui</a>
+                        </div>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+            </div><!-- /.modal -->
+
+        </div>
+
+
+
+    </div>
+{% endblock %}

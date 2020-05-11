@@ -12,7 +12,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * @ORM\Entity(repositoryClass="App\Repository\SygdobUserRepository")
  * @UniqueEntity(fields={"username"},
- * message="Cette valeur est dejà utilisé par un autre utilisateur"
+ * message="Ce nom d'utilisateur est dejà utilisé"
  * )
  * @ORM\HasLifecycleCallbacks()
  */
@@ -66,6 +66,69 @@ class SygdobUser implements UserInterface
      */
     private $picture;
 
+
+
+    /**
+     * @ORM\Column(name="user_role",type="string", length=150, nullable=true)
+     */
+    private $userrole;
+
+
+
+
+
+
+
+
+    /**
+     * @ORM\Column(name="user_structure",type="string", length=15, nullable=true)
+     *
+     */
+    private $userstructure;
+
+    /**
+     * @return mixed
+     */
+    public function getUserstructure()
+    {
+        return $this->userstructure;
+    }
+
+    /**
+     * @param mixed $userstructure
+     * @return SygdobUser
+     */
+    public function setUserstructure($userstructure)
+    {
+        $this->userstructure = $userstructure;
+        return $this;
+    }
+
+
+
+
+    /**
+     * @return mixed
+     */
+    public function getUserrole()
+    {
+        return $this->userrole;
+    }
+
+    /**
+     * @param mixed $userrole
+     * @return SygdobUser
+     */
+    public function setUserrole($userrole)
+    {
+        $this->userrole = $userrole;
+        return $this;
+    }
+
+
+
+
+
     /**
      * @ORM\Column(type="boolean",nullable=true)
      */
@@ -93,9 +156,33 @@ class SygdobUser implements UserInterface
     private $token;
 
     /**
+     * @return mixed
+     */
+    public function getUsercreat()
+    {
+        return $this->usercreat;
+    }
+
+    /**
+     * @param mixed $usercreat
+     * @return SygdobUser
+     */
+    public function setUsercreat($usercreat)
+    {
+        $this->usercreat = $usercreat;
+        return $this;
+    }
+
+    /**
      * @ORM\Column(type="datetime")
      */
     private $creatdat;
+
+    /**
+     * @ORM\Column(name="usercreat",type="string", length=100, nullable=true)
+     */
+    private $usercreat;
+
 
     /**
      * @ORM\Column(type="datetime")

@@ -24,7 +24,7 @@
             <div class="auth-box p-4 bg-white rounded">
                 <div>
                     <div class="logo">
-                        <h2 class="box-title mb-3">MON PROFIL</h2>
+                        <h2 class="box-title mb-3 text-center">MON PROFIL</h2>
                     </div>
                     <!-- Form -->
                     <div class="row">
@@ -125,7 +125,11 @@
                                 <div style="color: red">
                                     {{ form_errors(form.picture) }}
                                 </div>
+
                             </div>
+                                <div class="text-danger">
+                                   NB: Votre image de profil doit être au format (jpeg,jpg) et de taille inférieure à 500ko.
+                                </div>
 
                                 <div class="form-group text-center mb-3">
                                     <div class="col-xs-12">
@@ -133,13 +137,61 @@
                                     </div>
                                 </div>
                             {{ form_end(form) }}
-                                <div class="form-group mb-0 mt-2 ">
-                                    <div class="col-sm-12 text-center ">
-                                       <a href="{{ path('sygdob_dashboardcfiep') }}" class="text-danger ml-1 ">  <i class="fa fa-hand-point-right mr-1"></i>Accéder au tableau de bord</a>
-                                    </div>
-                                </div>
 
-                        </div>
+                                {%if(app.session.get('userrole')  =='ROLE_IEPPCF')%}
+
+                                    <div class="form-group mb-0 mt-2 ">
+                                        <div class="col-sm-12 text-center ">
+                                            <a href="{{ path('sygdob_dashboardcfiep') }}" class="text-danger ml-1 ">  <i class="fa fa-hand-point-right mr-1"></i>Accéder au tableau de bord</a>
+                                        </div>
+                                    </div>
+                                {% endif %}
+
+                                {%if(app.session.get('userrole')  =='ROLE_IEPP')%}
+
+                                    <div class="form-group mb-0 mt-2 ">
+                                        <div class="col-sm-12 text-center ">
+                                            <a href="{{ path('sygdob_dashboardiep') }}" class="text-danger ml-1 ">  <i class="fa fa-hand-point-right mr-1"></i>Accéder au tableau de bord</a>
+                                        </div>
+                                    </div>
+                                {% endif %}
+
+
+                                {%if(app.session.get('userrole')  =='ROLE_DCIO')%}
+
+                                    <div class="form-group mb-0 mt-2 ">
+                                        <div class="col-sm-12 text-center ">
+                                            <a href="{{ path('sygdob_dashboarddcio') }}" class="text-danger ml-1 ">  <i class="fa fa-hand-point-right mr-1"></i>Accéder au tableau de bord</a>
+                                        </div>
+                                    </div>
+                                {% endif %}
+
+
+                                {%if(app.session.get('userrole')  =='ROLE_DOBINFO')%}
+
+                                    <div class="form-group mb-0 mt-2 ">
+                                        <div class="col-sm-12 text-center ">
+                                            <a href="{{ path('sygdob_dashboarddobinfo') }}" class="text-danger ml-1 ">  <i class="fa fa-hand-point-right mr-1"></i>Accéder au tableau de bord</a>
+                                        </div>
+                                    </div>
+                                {% endif %}
+
+
+
+                                {%if(app.session.get('userrole')  =='ROLE_ADMINDOB')%}
+
+                                    <div class="form-group mb-0 mt-2 ">
+                                        <div class="col-sm-12 text-center ">
+                                            <a href="{{ path('sygdob_dashboarddobadmin') }}" class="text-danger ml-1 ">  <i class="fa fa-hand-point-right mr-1"></i>Accéder au tableau de bord</a>
+                                        </div>
+                                    </div>
+                                {% endif %}
+
+
+
+
+
+                            </div>
                     </div>
                 </div>
             </div>

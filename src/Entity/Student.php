@@ -4,9 +4,13 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\StudentRepository")
+ * @UniqueEntity(fields={"id"},
+ * message="Ce matricule est dejà utilisé "
+ * )
  */
 class Student
 {
@@ -111,6 +115,41 @@ class Student
      * @ORM\Column(name="iepp", type="string", length=15)
      */
     private $iepp;
+
+
+
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="dren", type="string", length=15)
+     */
+    private $dren;
+
+    /**
+     *
+     */
+    public function getDren()
+    {
+        return $this->dren;
+    }
+
+    /**
+     *
+     * @return Student
+     */
+    public function setDren( $dren): Student
+    {
+        $this->dren = $dren;
+        return $this;
+    }
+
+
+
+
+
+
+
 
 
     /**
@@ -379,64 +418,64 @@ class Student
     }
 
     /**
-     * @param string $id
+     *
      * @return Student
      */
-    public function setId(string $id): Student
+    public function setId( $id): Student
     {
         $this->id = $id;
         return $this;
     }
 
     /**
-     * @return string
+     *
      */
-    public function getFirstname(): string
+    public function getFirstname()
     {
         return $this->firstname;
     }
 
     /**
-     * @param string $firstname
+     *
      * @return Student
      */
-    public function setFirstname(string $firstname): Student
+    public function setFirstname( $firstname): Student
     {
         $this->firstname = $firstname;
         return $this;
     }
 
     /**
-     * @return string
+     *
      */
-    public function getLastname(): string
+    public function getLastname()
     {
         return $this->lastname;
     }
 
     /**
-     * @param string $lastname
+     *
      * @return Student
      */
-    public function setLastname(string $lastname): Student
+    public function setLastname( $lastname): Student
     {
         $this->lastname = $lastname;
         return $this;
     }
 
     /**
-     * @return \DateTime
+     *
      */
-    public function getBirthdate(): \DateTime
+    public function getBirthdate()
     {
         return $this->birthdate;
     }
 
     /**
-     * @param \DateTime $birthdate
+     *
      * @return Student
      */
-    public function setBirthdate(\DateTime $birthdate): Student
+    public function setBirthdate( $birthdate): Student
     {
         $this->birthdate = $birthdate;
         return $this;
@@ -461,36 +500,36 @@ class Student
     }
 
     /**
-     * @return string
+     *
      */
-    public function getKind(): string
+    public function getKind()
     {
         return $this->kind;
     }
 
     /**
-     * @param string $kind
+     *
      * @return Student
      */
-    public function setKind(string $kind): Student
+    public function setKind($kind): Student
     {
         $this->kind = $kind;
         return $this;
     }
 
     /**
-     * @return string
+     *
      */
-    public function getNationality(): string
+    public function getNationality()
     {
         return $this->nationality;
     }
 
     /**
-     * @param string $nationality
+     *
      * @return Student
      */
-    public function setNationality(string $nationality): Student
+    public function setNationality( $nationality): Student
     {
         $this->nationality = $nationality;
         return $this;
@@ -498,54 +537,54 @@ class Student
 
 
     /**
-     * @return string
+     *
      */
-    public function getResidence(): string
+    public function getResidence()
     {
         return $this->residence;
     }
 
     /**
-     * @param string $residence
+     *
      * @return Student
      */
-    public function setResidence(string $residence): Student
+    public function setResidence($residence): Student
     {
         $this->residence = $residence;
         return $this;
     }
 
     /**
-     * @return string
+     *
      */
-    public function getSchool(): string
+    public function getSchool()
     {
         return $this->school;
     }
 
     /**
-     * @param string $school
+     *
      * @return Student
      */
-    public function setSchool(string $school): Student
+    public function setSchool($school): Student
     {
         $this->school = $school;
         return $this;
     }
 
     /**
-     * @return string
+     *
      */
-    public function getIepp(): string
+    public function getIepp()
     {
         return $this->iepp;
     }
 
     /**
-     * @param string $iepp
+     *
      * @return Student
      */
-    public function setIepp(string $iepp): Student
+    public function setIepp( $iepp): Student
     {
         $this->iepp = $iepp;
         return $this;
@@ -824,7 +863,7 @@ class Student
     /**
      *
      */
-    public function getValidwish(): string
+    public function getValidwish()
     {
         return $this->validwish;
     }

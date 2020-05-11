@@ -47,4 +47,49 @@ class IeppRepository extends ServiceEntityRepository
         ;
     }
     */
+
+
+
+
+    public function searchiepp($dren,$data, $page = 0, $max = NULL, $getResult = true)
+    {
+        $qb = $this->_em->createQueryBuilder();
+        $query = isset($data['query']) && $data['query']?$data['query']:null;
+
+        $qb
+            ->select('i')
+            ->from('App\Entity\Iepp', 'i')
+            ->where("i.drenddn=:drenddn ")
+
+
+            ->setParameter('drenddn', $dren)
+
+
+
+
+
+        ;
+
+        if ($query) {
+            $qb
+                ->andWhere('i.id like :query')
+                ->setParameter('query', "%".$query."%")
+            ;
+        }
+
+        if ($max) {
+            $preparedQuery = $qb->getQuery()
+                ->setMaxResults($max)
+                ->setFirstResult($page * $max)
+            ;
+        } else {
+            $preparedQuery = $qb->getQuery();
+        }
+
+        return $getResult?$preparedQuery->getResult():$preparedQuery;
+    }
+
+
+
+
 }

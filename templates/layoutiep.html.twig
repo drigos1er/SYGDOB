@@ -217,7 +217,7 @@ MENETFP-DOB
                         </li>
 
                         <li class="sidebar-item"> <a class="btn waves-effect waves-light btn-light"
-                                                     href="#" ><i class="mdi mdi-format-line-weight"></i><span
+                                                     href="{{ path('sygdob_tablerecapwishiep') }}" ><i class="mdi mdi-format-line-weight"></i><span
                                         class="hide-menu">Point des saisies</span></a></li>
 
                     </ul>
@@ -442,9 +442,22 @@ MENETFP-DOB
         $('#schoolbyiep').DataTable({
 
 
-            "ajax": "{{ path('sygdob_listtablerecapeditcf') }}",
+            "ajax": "{{ path('sygdob_listtablerecapwishbyschool') }}",
             "sAjaxDataProp": "data",
             "pageLength": 50,
+            dom: 'Bfrtip',
+            buttons: [
+                {
+                    extend: 'excel',
+                    text: 'Telecharger en Excel',
+                    buttons: [
+
+                        'excel'
+
+
+                    ]
+                }
+            ],
 
             "columns":[
 
@@ -506,7 +519,79 @@ MENETFP-DOB
         $('#studentbyname').DataTable({
 
 
-            "ajax": "{{ path('sygdob_listtablestudentbyname') }}",
+            "ajax": "{{ path('sygdob_listtablestudentbynameiep') }}",
+            "sAjaxDataProp": "data",
+            "pageLength": 50,
+
+            "columns":[
+
+                {"data": "mat"},
+                {"data": "first"},
+                {"data": "last"},
+                {"data": "birth"},
+                {"data": "place"},
+                {"data": "kind"},
+                {"data": "nat"},
+                {"data": "resid"},
+                {"data": "wish1"},
+                {"data": "wish2"},
+                {"data": "wish3"},
+
+
+
+
+            ],
+            "language": {
+
+                "searchPlaceholder": "Recherche",
+                "paginate": {
+                    "first":      "Premier",
+                    "last":       "Dernier",
+                    "next":       "Suivant",
+                    "previous":   "Précédent"
+                },
+                "zeroRecords":    "Aucun Resultat Trouvé",
+                "emptyTable":     "Aucun Resultat Trouvé",
+                "info":           "Affichage de _START_ à _END_ sur _TOTAL_ entrées",
+                "infoEmpty":      "Affichage de 0 à 0 sur 0 entrées",
+                "infoFiltered":   "(filtrés sur _MAX_ total entrées)",
+                "infoPostFix":    "",
+                "thousands":      ",",
+                "lengthMenu":     "Afficher _MENU_ entrées",
+                "loadingRecords": "Chargement...",
+                "processing":     "Chargement...",
+                "search":         "Recherche:"
+
+            }
+        });
+
+        $(document).ready(function(){
+            $('#xphone-mask').inputmask("99-99-99-99");  //static mask
+
+        });
+
+        $(document).ready(function(){
+            $('#xphone-mask-mo').inputmask("99-99-99-99");  //static mask
+
+        });
+
+
+
+        $(document).ready(function(){
+            $('#xphone-mask-to').inputmask("99-99-99-99");  //static mask
+
+        });
+    </script>
+
+
+
+    <script>
+
+
+        $('#studentbymat').DataTable({
+
+
+            "ajax": "{{ path('sygdob_listtablestudentbymatiep') }}",
             "sAjaxDataProp": "data",
             "pageLength": 50,
 

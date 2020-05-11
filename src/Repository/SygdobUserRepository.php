@@ -48,4 +48,131 @@ class SygdobUserRepository extends ServiceEntityRepository
         ;
     }
     */
+
+
+
+
+    public function searchuseriepp($idiepp,$data, $page = 0, $max = NULL, $getResult = true)
+    {
+        $qb = $this->_em->createQueryBuilder();
+        $query = isset($data['query']) && $data['query']?$data['query']:null;
+
+        $qb
+            ->select('s')
+            ->from('App\Entity\SygdobUser', 's')
+            ->where("s.userstructure=:idiepp ")
+
+
+            ->setParameter('idiepp', $idiepp)
+
+
+
+
+
+        ;
+
+        if ($query) {
+            $qb
+                ->andWhere('s.id like :query')
+                ->setParameter('query', "%".$query."%")
+            ;
+        }
+
+        if ($max) {
+            $preparedQuery = $qb->getQuery()
+                ->setMaxResults($max)
+                ->setFirstResult($page * $max)
+            ;
+        } else {
+            $preparedQuery = $qb->getQuery();
+        }
+
+        return $getResult?$preparedQuery->getResult():$preparedQuery;
+    }
+
+
+
+
+
+
+    public function searchuserdren($iddren,$data, $page = 0, $max = NULL, $getResult = true)
+    {
+        $qb = $this->_em->createQueryBuilder();
+        $query = isset($data['query']) && $data['query']?$data['query']:null;
+
+        $qb
+            ->select('s')
+            ->from('App\Entity\SygdobUser', 's')
+            ->where("s.userstructure=:iddren ")
+
+
+            ->setParameter('iddren', $iddren)
+
+
+
+
+
+        ;
+
+        if ($query) {
+            $qb
+                ->andWhere('s.id like :query')
+                ->setParameter('query', "%".$query."%")
+            ;
+        }
+
+        if ($max) {
+            $preparedQuery = $qb->getQuery()
+                ->setMaxResults($max)
+                ->setFirstResult($page * $max)
+            ;
+        } else {
+            $preparedQuery = $qb->getQuery();
+        }
+
+        return $getResult?$preparedQuery->getResult():$preparedQuery;
+    }
+
+
+
+    public function searchuserstruct($idstruct,$data, $page = 0, $max = NULL, $getResult = true)
+    {
+        $qb = $this->_em->createQueryBuilder();
+        $query = isset($data['query']) && $data['query']?$data['query']:null;
+
+        $qb
+            ->select('s')
+            ->from('App\Entity\SygdobUser', 's')
+            ->where("s.userstructure=:idstruct ")
+
+
+            ->setParameter('idstruct', $idstruct)
+
+
+
+
+
+        ;
+
+        if ($query) {
+            $qb
+                ->andWhere('s.id like :query')
+                ->setParameter('query', "%".$query."%")
+            ;
+        }
+
+        if ($max) {
+            $preparedQuery = $qb->getQuery()
+                ->setMaxResults($max)
+                ->setFirstResult($page * $max)
+            ;
+        } else {
+            $preparedQuery = $qb->getQuery();
+        }
+
+        return $getResult?$preparedQuery->getResult():$preparedQuery;
+    }
+
+
+
 }

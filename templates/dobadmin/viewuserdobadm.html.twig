@@ -1,0 +1,152 @@
+{% extends 'layoutdobadmin.html.twig' %}
+
+{% block title %}SYGDOB| Recherche d'utilisateur{% endblock %}
+
+{% block body %}
+
+    <div class="container-fluid">
+        <!-- Row -->
+        <div class="row">
+            <!-- Column -->
+
+
+
+            <div class="col-lg-4 col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h3 class="card-title">LES IEPP </h3>
+                        <h6 class="card-subtitle">Afficher les utilisateurs par IEPP</h6>
+                        <form  action="{{ path('sygdob_redirecttableuserbyiep') }}" method="post">
+
+
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="ti-home"></i></span>
+                                </div>
+                                {{ form_widget(form.ieppname,{'attr': {'class': 'select2 form-control custom-select'}}) }}
+                                <div class="input-group-append">
+                                    <button class="btn btn-success">Ok</button>
+                                </div>
+                            </div>
+
+
+
+
+
+                        </form>
+                    </div>
+
+
+
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h3 class="card-title">LES DRENETFP/DDENETFP </h3>
+                        <h6 class="card-subtitle">Afficher les utilisateurs par CIO</h6>
+                        <form  action="{{ path('sygdob_redirecttableuserbydren') }}" method="post">
+
+
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="ti-home"></i></span>
+                                </div>
+                                {{ form_widget(form2.drenname,{'attr': {'class': 'select2 form-control custom-select'}}) }}
+                                <div class="input-group-append">
+                                    <button class="btn btn-success">Ok</button>
+                                </div>
+                            </div>
+
+
+
+
+
+                        </form>
+                    </div>
+
+
+
+                </div>
+            </div>
+
+
+
+            <div class="col-lg-4 col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h3 class="card-title">LES DIRECTIONS CENTRALES </h3>
+                        <h6 class="card-subtitle">Afficher les utilisateurs par direction</h6>
+                        <form  action="{{ path('sygdob_redirecttableuserbystruct') }}" method="post">
+
+
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="ti-home"></i></span>
+                                </div>
+                                {{ form_widget(form3.structure,{'attr': {'class': 'select2 form-control custom-select'}}) }}
+                                <div class="input-group-append">
+                                    <button class="btn btn-success">Ok</button>
+                                </div>
+                            </div>
+
+
+
+
+
+                        </form>
+                    </div>
+
+
+
+                </div>
+            </div>
+
+
+
+
+
+
+            <div class="col-lg-4 offset-lg-4  col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h3 class="card-title">LES UTILISATEURS </h3>
+                        <h6 class="card-subtitle">Rechercher un utilisateur </h6>
+                        {% for message in app.flashes('error')  %}
+                            <div class="alert alert-danger"> {{ message }}</div>
+                        {% endfor  %}
+                        {% for message in app.flashes('success')  %}
+                            <div class="alert alert-success"> {{ message }}</div>
+                        {% endfor  %}
+
+                        <form  action="{{ path('sygdob_redirecttableuserbymat') }}" method="post">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="ti-user"></i></span>
+                            </div>
+                            {{ form_widget(form1.username,{'attr': {'placeholder': 'Entrer le nom d\'utilisateur','class': 'form-control'}}) }}
+
+
+                            <div class="input-group-append">
+                                <button class="btn btn-success">Ok</button>
+                            </div>
+                        </div>
+
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+
+
+
+
+
+        </div>
+        <!-- Row -->
+
+    </div>
+
+
+{% endblock %}

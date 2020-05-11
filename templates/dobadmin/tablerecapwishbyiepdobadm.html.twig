@@ -1,0 +1,54 @@
+{% extends 'layoutdobadmin.html.twig' %}
+
+{% block title %}SYGDOB| Point des saisies par IEPP{% endblock %}
+
+{% block body %}
+    <div class="container-fluid">
+
+
+
+
+
+
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title text-center">POINT DES SAISIES PAR IEPP : DRENETFP <span style="color: black">{{ app.session.get('drenddnnamebyiep') }} </span> </h4>
+
+
+                        {% for message in app.flashes('success')  %}
+                            <div class="alert alert-success"> {{ message }}</div>
+                        {% endfor  %}
+
+
+                        <div class="table-responsive">
+                            <div class="text-center"><a href="{{ path('sygdob_tablerecapwishbydrendobadm') }}" type="button"
+                                                             class="btn waves-effect waves-light btn-warning text-center"><i class="mdi mdi-reply-all"></i>Retour au point par DRENETFP</a></div>
+
+                            <table  class="table table-hover table-bordered table-striped table-sm mb-0 display" id="iepbydren" style="width:100%">
+                                <thead class="bg-info text-white">
+                                <tr>
+                                    <th>IEPP</th>
+                                    <th>Nombre de candidats</th>
+                                    <th>Nombre de candidats avec voeux saisis</th>
+                                    <th>Taux de  saisis</th>
+                                    <th>Détails par école</th>
+
+                                </tr>
+                                </thead>
+                                <tbody>
+
+                                </tbody>
+
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+    </div>
+{% endblock %}

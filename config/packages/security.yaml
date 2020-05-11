@@ -39,3 +39,6 @@ security:
     access_control:
          - { path: ^/cfieparea, roles: ROLE_IEPPCF }
          - { path: ^/ieparea, roles: ROLE_IEPP }
+         - { path: ^/dcioarea, roles: ROLE_DCIO }
+         - { path: ^/dobinfoarea, roles: ROLE_DOBINFO }
+         - { path: ^/dobadminarea, roles: ROLE_ADMINDOB }

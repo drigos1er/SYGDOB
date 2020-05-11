@@ -2,7 +2,11 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/../SIGES/.idea/SIGES.iml" filepath="$PROJECT_DIR$/../SIGES/.idea/SIGES.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../SIGESV2/.idea/SIGESV2.iml" filepath="$PROJECT_DIR$/../SIGESV2/.idea/SIGESV2.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/SYGDOB.iml" filepath="$PROJECT_DIR$/.idea/SYGDOB.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../changevoeux/.idea/changevoeux.iml" filepath="$PROJECT_DIR$/../changevoeux/.idea/changevoeux.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../materialpro-bootstrap-latest/.idea/materialpro-bootstrap-latest.iml" filepath="$PROJECT_DIR$/../materialpro-bootstrap-latest/.idea/materialpro-bootstrap-latest.iml" />
     </modules>
   </component>
 </project>

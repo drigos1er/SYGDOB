@@ -1,0 +1,51 @@
+{% extends 'layoutdobadmin.html.twig' %}
+
+{% block title %}SYGDOB| Modification d'utilisateur{% endblock %}
+
+{% block body %}
+
+    <div class="container-fluid">
+        <!-- Row -->
+        <div class="row">
+            <!-- Column -->
+
+
+
+            <div class="col-lg-4 offset-lg-4 col-md-12">
+                <div class="card">
+                    <div class="card-body">
+
+                        <h6 class="card-subtitle">Modifier un élève </h6>
+                        {% for message in app.flashes('error')  %}
+                            <div class="alert alert-danger"> {{ message }}</div>
+                        {% endfor  %}
+                        {% for message in app.flashes('success')  %}
+                            <div class="alert alert-success"> {{ message }}</div>
+                        {% endfor  %}
+
+                        {{ form_start(form) }}
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="ti-user"></i></span>
+                                </div>
+                                {{ form_widget(form.id,{'attr': {'placeholder': 'Entrer le matricule','class': 'form-control'}}) }}
+
+
+                                <div class="input-group-append">
+                                    <button class="btn btn-success">Ok</button>
+                                </div>
+                            </div>
+                            {{ form_end(form) }}
+                    </div>
+
+                </div>
+            </div>
+
+
+        </div>
+        <!-- Row -->
+
+    </div>
+
+
+{% endblock %}

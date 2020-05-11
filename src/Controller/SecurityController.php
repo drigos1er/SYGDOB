@@ -6,6 +6,9 @@ namespace App\Controller;
 use App\Entity\ResetPwd;
 use App\Entity\SygdobUser;
 use App\Entity\UpdPwd;
+use App\Form\RegistrationdcioType;
+use App\Form\RegistrationdobType;
+use App\Form\RegistrationieppType;
 use App\Form\RegistrationType;
 use App\Form\ResettingpwdType;
 use App\Form\UpdpasswordType;
@@ -119,6 +122,517 @@ class SecurityController extends AbstractController
             )
         );
     }
+
+
+
+    /**
+     * Page de création d'un utillisateur
+     * @param Request $request
+     * @param ObjectManager $manager
+     * @param UserPasswordEncoderInterface $encoder
+     * @return RedirectResponse|Response
+     * @throws \Exception
+     */
+    public function registrationiepp(Request $request,  UserPasswordEncoderInterface $encoder, SygdobUserRepository $sygdobuserrep)
+    {
+        $useraut= new SygdobUser();
+        $form= $this->createForm(RegistrationieppType::class, $useraut);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $manager= $this->getDoctrine()->getManager();
+
+
+
+            //Verification si une image a été ajoutée
+            if ($form['picture']->getData() == "") {
+                //Encodage du Mot de passe
+
+                $hashpwd='$2y$13$SbQbBqins5p2aAhynnf5De3IyLgEP5uY./zndm5oG.g.rPlmgEhK.';
+                $useraut->setPassword($hashpwd);
+                $useraut->setUserstructure($form['userstructure']->getData()->getId());
+                $useraut->setEnabled(1);
+                $useraut->setUsercreat($this->getuser()->getUsername());
+                $manager->persist($useraut);
+                $manager->flush();
+
+
+               $lastid=$useraut->getId();
+
+
+
+                $sql = " REPLACE INTO sygdob_role_sygdob_user VALUES (:roleid,:userid)  ";
+                $params = array('roleid'=>$form['userrole']->getData() ,'userid'=>$lastid);
+
+                $em = $this->getDoctrine()->getManager();
+                $stmt = $em->getConnection()->prepare($sql);
+                $stmt->execute($params);
+
+                $sql = " REPLACE INTO useriepp VALUES (:userid,:ieppid)  ";
+                $params = array('userid'=>$form['username']->getData() ,'ieppid'=>$form['userstructure']->getData()->getid());
+
+                $em = $this->getDoctrine()->getManager();
+                $stmt = $em->getConnection()->prepare($sql);
+                $stmt->execute($params);
+
+
+
+
+                if ($this->get('session')->get('userrole')=='ROLE_ADMINDOB') {
+
+                    $this->addFlash('success', 'Compte crée avec succès');
+                    return $this->redirectToRoute('sygdob_dashboarddobadmin');
+
+                }
+
+
+
+
+
+
+
+
+                if ($this->get('session')->get('userrole')=='ROLE_DOBINFO') {
+
+                    $this->addFlash('success', 'Compte crée avec succès');
+                    return $this->redirectToRoute('sygdob_dashboarddobinfo');
+
+                }
+
+
+
+            } else {
+
+                // Recuperation de l'image et changement de nom de l'image
+                $picture= $form['picture']->getData();
+                $picturename= md5(uniqid()).'.'.$picture->guessExtension();
+                $extensionsAutorisees = array('jpg', 'JPG', 'jpeg', 'JPEG');
+
+                // recuperation de la taille de l'image et verification de la taille et de l'extension
+                $picturesize = $picture->getClientSize();
+                if (!in_array($picture->guessExtension(), $extensionsAutorisees)) {
+                    $form->get('picture')->addError(
+                        new FormError(
+                            "Extension  du fichier incorrect. Votre image doit être au format(
+                                 \"jpg\", \"JPG\",\"jpeg\", \"JPEG\") !"
+                        )
+                    );
+                } elseif ($picturesize > 500000) {
+                    $form->get('picture')->addError(
+                        new FormError(
+                            "La taille de votre photo doit être inferieure à 500 Ko"
+                        )
+                    );
+                } else {
+                    //téléchargement de l'image et enregistrement de l'utilisateur
+                    $picture->move($this->getParameter('upload_destination'), $picturename);
+                    $hashpwd='$2y$13$SbQbBqins5p2aAhynnf5De3IyLgEP5uY./zndm5oG.g.rPlmgEhK.';
+                    $useraut->setPassword($hashpwd);
+                    $useraut->setPicture($picturename);
+
+
+                    $useraut->setUserstructure($form['userstructure']->getData()->getId());
+
+                    $useraut->setEnabled(1);
+                    $useraut->setUsercreat($this->getuser()->getUsername());
+                    $manager->persist($useraut);
+                    $manager->flush();
+
+
+                    $lastid=$useraut->getId();
+
+
+
+                    $sql = " REPLACE INTO sygdob_role_sygdob_user VALUES (:roleid,:userid)  ";
+                    $params = array('roleid'=>$form['userrole']->getData() ,'userid'=>$lastid);
+
+                    $em = $this->getDoctrine()->getManager();
+                    $stmt = $em->getConnection()->prepare($sql);
+                    $stmt->execute($params);
+
+                    $sql = " REPLACE INTO useriepp VALUES (:userid,:ieppid)  ";
+                    $params = array('userid'=>$form['username']->getData() ,'ieppid'=>$form['userstructure']->getData()->getid());
+
+                    $em = $this->getDoctrine()->getManager();
+                    $stmt = $em->getConnection()->prepare($sql);
+                    $stmt->execute($params);
+
+
+
+
+
+                    if ($this->get('session')->get('userrole')=='ROLE_ADMINDOB') {
+
+                        $this->addFlash('success', 'Compte crée avec succès');
+                        return $this->redirectToRoute('sygdob_dashboarddobadmin');
+
+                    }
+
+
+
+
+
+
+
+
+                    if ($this->get('session')->get('userrole')=='ROLE_DOBINFO') {
+
+                        $this->addFlash('success', 'Compte crée avec succès');
+                        return $this->redirectToRoute('sygdob_dashboarddobinfo');
+
+                    }
+
+
+
+
+
+
+
+
+                }
+            }
+        }
+        return $this->render(
+            'security/registrationiepp.html.twig',
+            array(
+                'form'=>$form->createView(),
+                'current_menu'=>'register'
+            )
+        );
+    }
+
+
+
+
+    /**
+     * Page de création d'un utillisateur
+     * @param Request $request
+     * @param ObjectManager $manager
+     * @param UserPasswordEncoderInterface $encoder
+     * @return RedirectResponse|Response
+     * @throws \Exception
+     */
+    public function registrationdcio(Request $request,  UserPasswordEncoderInterface $encoder, SygdobUserRepository $sygdobuserrep)
+    {
+        $useraut= new SygdobUser();
+        $form= $this->createForm(RegistrationdcioType::class, $useraut);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $manager= $this->getDoctrine()->getManager();
+
+
+
+            //Verification si une image a été ajoutée
+            if ($form['picture']->getData() == "") {
+                //Encodage du Mot de passe
+
+                $hashpwd='$2y$13$SbQbBqins5p2aAhynnf5De3IyLgEP5uY./zndm5oG.g.rPlmgEhK.';
+                $useraut->setPassword($hashpwd);
+                $useraut->setUserstructure($form['userstructure']->getData()->getId());
+
+                $useraut->setEnabled(1);
+                $useraut->setUsercreat($this->getuser()->getUsername());
+                $manager->persist($useraut);
+                $manager->flush();
+
+
+                $lastid=$useraut->getId();
+
+
+
+                $sql = " REPLACE INTO sygdob_role_sygdob_user VALUES (:roleid,:userid)  ";
+                $params = array('roleid'=>$form['userrole']->getData() ,'userid'=>$lastid);
+
+                $em = $this->getDoctrine()->getManager();
+                $stmt = $em->getConnection()->prepare($sql);
+                $stmt->execute($params);
+
+                $sql = " REPLACE INTO useriepp VALUES (:userid,:ieppid)  ";
+                $params = array('userid'=>$form['username']->getData() ,'ieppid'=>$form['userstructure']->getData()->getid());
+
+                $em = $this->getDoctrine()->getManager();
+                $stmt = $em->getConnection()->prepare($sql);
+                $stmt->execute($params);
+
+
+
+
+                if ($this->get('session')->get('userrole')=='ROLE_ADMINDOB') {
+
+                    $this->addFlash('success', 'Compte crée avec succès');
+                    return $this->redirectToRoute('sygdob_dashboarddobadmin');
+
+                }
+
+
+
+
+
+
+
+
+
+
+            } else {
+
+                // Recuperation de l'image et changement de nom de l'image
+                $picture= $form['picture']->getData();
+                $picturename= md5(uniqid()).'.'.$picture->guessExtension();
+                $extensionsAutorisees = array('jpg', 'JPG', 'jpeg', 'JPEG');
+
+                // recuperation de la taille de l'image et verification de la taille et de l'extension
+                $picturesize = $picture->getClientSize();
+                if (!in_array($picture->guessExtension(), $extensionsAutorisees)) {
+                    $form->get('picture')->addError(
+                        new FormError(
+                            "Extension  du fichier incorrect. Votre image doit être au format(
+                                 \"jpg\", \"JPG\",\"jpeg\", \"JPEG\") !"
+                        )
+                    );
+                } elseif ($picturesize > 500000) {
+                    $form->get('picture')->addError(
+                        new FormError(
+                            "La taille de votre photo doit être inferieure à 500 Ko"
+                        )
+                    );
+                } else {
+                    //téléchargement de l'image et enregistrement de l'utilisateur
+                    $picture->move($this->getParameter('upload_destination'), $picturename);
+                    $hashpwd='$2y$13$SbQbBqins5p2aAhynnf5De3IyLgEP5uY./zndm5oG.g.rPlmgEhK.';
+                    $useraut->setPassword($hashpwd);
+                    $useraut->setPicture($picturename);
+
+                    $useraut->setUserstructure($form['userstructure']->getData()->getId());
+
+
+                    $useraut->setEnabled(1);
+                    $useraut->setUsercreat($this->getuser()->getUsername());
+                    $manager->persist($useraut);
+                    $manager->flush();
+
+
+                    $lastid=$useraut->getId();
+
+
+
+                    $sql = " REPLACE INTO sygdob_role_sygdob_user VALUES (:roleid,:userid)  ";
+                    $params = array('roleid'=>$form['userrole']->getData() ,'userid'=>$lastid);
+
+                    $em = $this->getDoctrine()->getManager();
+                    $stmt = $em->getConnection()->prepare($sql);
+                    $stmt->execute($params);
+
+                    $sql = " REPLACE INTO useriepp VALUES (:userid,:ieppid)  ";
+                    $params = array('userid'=>$form['username']->getData() ,'ieppid'=>$form['userstructure']->getData()->getid());
+
+                    $em = $this->getDoctrine()->getManager();
+                    $stmt = $em->getConnection()->prepare($sql);
+                    $stmt->execute($params);
+
+
+
+
+
+                    if ($this->get('session')->get('userrole')=='ROLE_ADMINDOB') {
+
+                        $this->addFlash('success', 'Compte crée avec succès');
+                        return $this->redirectToRoute('sygdob_dashboarddobadmin');
+
+                    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+                }
+            }
+        }
+        return $this->render(
+            'security/registrationdcio.html.twig',
+            array(
+                'form'=>$form->createView(),
+                'current_menu'=>'register'
+            )
+        );
+    }
+
+
+
+
+
+
+    /**
+     * Page de création d'un utillisateur
+     * @param Request $request
+     * @param ObjectManager $manager
+     * @param UserPasswordEncoderInterface $encoder
+     * @return RedirectResponse|Response
+     * @throws \Exception
+     */
+    public function registrationdob(Request $request,  UserPasswordEncoderInterface $encoder, SygdobUserRepository $sygdobuserrep)
+    {
+        $useraut= new SygdobUser();
+        $form= $this->createForm(RegistrationdobType::class, $useraut);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $manager= $this->getDoctrine()->getManager();
+
+
+
+            //Verification si une image a été ajoutée
+            if ($form['picture']->getData() == "") {
+                //Encodage du Mot de passe
+
+                $hashpwd='$2y$13$SbQbBqins5p2aAhynnf5De3IyLgEP5uY./zndm5oG.g.rPlmgEhK.';
+                $useraut->setPassword($hashpwd);
+
+
+                $useraut->setEnabled(1);
+                $useraut->setUsercreat($this->getuser()->getUsername());
+                $manager->persist($useraut);
+                $manager->flush();
+
+
+                $lastid=$useraut->getId();
+
+
+
+                $sql = " REPLACE INTO sygdob_role_sygdob_user VALUES (:roleid,:userid)  ";
+                $params = array('roleid'=>$form['userrole']->getData() ,'userid'=>$lastid);
+
+                $em = $this->getDoctrine()->getManager();
+                $stmt = $em->getConnection()->prepare($sql);
+                $stmt->execute($params);
+
+                $sql = " REPLACE INTO useriepp VALUES (:userid,:ieppid)  ";
+                $params = array('userid'=>$form['username']->getData() ,'ieppid'=>$form['userstructure']->getData());
+
+                $em = $this->getDoctrine()->getManager();
+                $stmt = $em->getConnection()->prepare($sql);
+                $stmt->execute($params);
+
+
+
+
+                if ($this->get('session')->get('userrole')=='ROLE_ADMINDOB') {
+
+                    $this->addFlash('success', 'Compte crée avec succès');
+                    return $this->redirectToRoute('sygdob_dashboarddobadmin');
+
+                }
+
+
+
+
+
+
+
+
+
+
+            } else {
+
+                // Recuperation de l'image et changement de nom de l'image
+                $picture= $form['picture']->getData();
+                $picturename= md5(uniqid()).'.'.$picture->guessExtension();
+                $extensionsAutorisees = array('jpg', 'JPG', 'jpeg', 'JPEG');
+
+                // recuperation de la taille de l'image et verification de la taille et de l'extension
+                $picturesize = $picture->getClientSize();
+                if (!in_array($picture->guessExtension(), $extensionsAutorisees)) {
+                    $form->get('picture')->addError(
+                        new FormError(
+                            "Extension  du fichier incorrect. Votre image doit être au format(
+                                 \"jpg\", \"JPG\",\"jpeg\", \"JPEG\") !"
+                        )
+                    );
+                } elseif ($picturesize > 500000) {
+                    $form->get('picture')->addError(
+                        new FormError(
+                            "La taille de votre photo doit être inferieure à 500 Ko"
+                        )
+                    );
+                } else {
+                    //téléchargement de l'image et enregistrement de l'utilisateur
+                    $picture->move($this->getParameter('upload_destination'), $picturename);
+                    $hashpwd='$2y$13$SbQbBqins5p2aAhynnf5De3IyLgEP5uY./zndm5oG.g.rPlmgEhK.';
+                    $useraut->setPassword($hashpwd);
+                    $useraut->setPicture($picturename);
+
+
+
+
+                    $useraut->setEnabled(1);
+                    $useraut->setUsercreat($this->getuser()->getUsername());
+                    $manager->persist($useraut);
+                    $manager->flush();
+
+
+                    $lastid=$useraut->getId();
+
+
+
+                    $sql = " REPLACE INTO sygdob_role_sygdob_user VALUES (:roleid,:userid)  ";
+                    $params = array('roleid'=>$form['userrole']->getData() ,'userid'=>$lastid);
+
+                    $em = $this->getDoctrine()->getManager();
+                    $stmt = $em->getConnection()->prepare($sql);
+                    $stmt->execute($params);
+
+                    $sql = " REPLACE INTO useriepp VALUES (:userid,:ieppid)  ";
+                    $params = array('userid'=>$form['username']->getData() ,'ieppid'=>$form['userstructure']->getData());
+
+                    $em = $this->getDoctrine()->getManager();
+                    $stmt = $em->getConnection()->prepare($sql);
+                    $stmt->execute($params);
+
+
+
+
+
+                    if ($this->get('session')->get('userrole')=='ROLE_ADMINDOB') {
+
+                        $this->addFlash('success', 'Compte crée avec succès');
+                        return $this->redirectToRoute('sygdob_dashboarddobadmin');
+
+                    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+                }
+            }
+        }
+        return $this->render(
+            'security/registrationdob.html.twig',
+            array(
+                'form'=>$form->createView(),
+                'current_menu'=>'register'
+            )
+        );
+    }
+
+
+
+
+
+
 
 
     /**
@@ -254,6 +768,29 @@ class SecurityController extends AbstractController
 
         $userprofile= $this->getUser();
 
+
+        if ($this->getUser()->getEnabled()!=1) {
+
+
+            $this->addFlash('error', 'Désolé ce compte est inactif');
+            return $this->redirectToRoute('security_login');
+
+
+
+
+        }
+
+
+
+        $sql = " UPDATE sygdob_user SET last_login=now() WHERE username=:username   ";
+        $params = array('username'=>$this->getUser()->getUsername());
+
+        $em = $this->getDoctrine()->getManager();
+        $stmt = $em->getConnection()->prepare($sql);
+        $stmt->execute($params);
+
+
+
         $auth = $this->container->get('security.authorization_checker');
 
 
@@ -272,6 +809,37 @@ class SecurityController extends AbstractController
             $request->getSession()->set('userrole', $userrole);
 
         }
+
+
+
+
+        if ($auth->isGranted('ROLE_DCIO')) {
+
+            $userrole= 'ROLE_DCIO';
+            $request->getSession()->set('userrole', $userrole);
+
+        }
+
+
+
+
+        if ($auth->isGranted('ROLE_DOBINFO')) {
+
+            $userrole= 'ROLE_DOBINFO';
+            $request->getSession()->set('userrole', $userrole);
+
+        }
+
+
+
+        if ($auth->isGranted('ROLE_ADMINDOB')) {
+
+            $userrole= 'ROLE_ADMINDOB';
+            $request->getSession()->set('userrole', $userrole);
+
+        }
+
+
 
 
 
@@ -319,6 +887,64 @@ class SecurityController extends AbstractController
 
 
 
+
+
+
+        if ($auth->isGranted('ROLE_DCIO')) {
+
+
+
+            $useriepp=$useriepprep->findOneByUserid($userprofile->getUsername());
+            $request->getSession()->set('useriepp', $useriepp);
+            $iepp=$iepprep->findOneById($useriepp->getIeppid());
+            $request->getSession()->set('iepp', $iepp);
+
+            $dren=$drenrepo->findOneById($useriepp->getIeppid());
+            $request->getSession()->set('dren', $dren);
+
+            if ($userprofile->getPassword()== '$2y$13$SbQbBqins5p2aAhynnf5De3IyLgEP5uY./zndm5oG.g.rPlmgEhK.') {
+                return $this->redirectToRoute('security_updpwd', array('id'=>$userprofile->getId()));
+            }
+
+
+            return $this->redirectToRoute('sygdob_dashboarddcio');
+        }
+
+
+
+        if ($auth->isGranted('ROLE_DOBINFO')) {
+
+
+
+            $useriepp=$useriepprep->findOneByUserid($userprofile->getUsername());
+            $request->getSession()->set('useriepp', $useriepp);
+
+
+            if ($userprofile->getPassword()== '$2y$13$SbQbBqins5p2aAhynnf5De3IyLgEP5uY./zndm5oG.g.rPlmgEhK.') {
+                return $this->redirectToRoute('security_updpwd', array('id'=>$userprofile->getId()));
+            }
+
+
+            return $this->redirectToRoute('sygdob_dashboarddobinfo');
+        }
+
+
+
+        if ($auth->isGranted('ROLE_ADMINDOB')) {
+
+
+
+            $useriepp=$useriepprep->findOneByUserid($userprofile->getUsername());
+            $request->getSession()->set('useriepp', $useriepp);
+
+
+            if ($userprofile->getPassword()== '$2y$13$SbQbBqins5p2aAhynnf5De3IyLgEP5uY./zndm5oG.g.rPlmgEhK.') {
+                return $this->redirectToRoute('security_updpwd', array('id'=>$userprofile->getId()));
+            }
+
+
+            return $this->redirectToRoute('sygdob_dashboarddobadmin');
+        }
 
 
 

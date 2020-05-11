@@ -1,0 +1,53 @@
+{% extends 'layoutiep.html.twig' %}
+
+{% block title %}SYGDOB| Liste d'élèves{% endblock %}
+
+{% block body %}
+    <div class="container-fluid">
+
+
+
+
+
+
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title text-center">RECHERCHE D'ELEVES PAR NOM ou PRENOM : <span style="color: brown; font-weight: bold"> {{ app.session.get('stdname')}}</span> </h4>
+
+
+
+
+                        <div class="table-responsive">
+                            <table  class="table table-hover table-bordered table-striped table-sm mb-0 display " id="studentbyname" style="width:100%">
+                                <thead class="bg-info text-white text-center">
+                                <tr>
+                                    <th>Matricule</th>
+                                    <th>Nom</th>
+                                    <th>Prénoms</th>
+                                    <th>Date de Naissance</th>
+                                    <th>Lieu de Naissance</th>
+                                    <th>Genre</th>
+                                    <th>Nationalité</th>
+                                    <th>Résidence</th>
+                                    <th>Voeu1</th>
+                                    <th>Voeu2</th>
+                                    <th>Voeu3</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+
+                                </tbody>
+
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+    </div>
+{% endblock %}

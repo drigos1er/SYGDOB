@@ -122,4 +122,38 @@ class StudentRepository extends ServiceEntityRepository
 
     }
 
+
+
+    public function searchstudentmat($id)
+    {
+
+
+
+
+
+
+
+        $rsm = new ResultSetMapping();
+
+        $rsm->addScalarResult('id', 'id');
+
+
+
+        $sql = "SELECT id FROM `student` WHERE id=:id ";
+        $query = $this->_em->createNativeQuery($sql, $rsm);
+        $query->setParameter('id', $id );
+
+
+
+
+
+
+        $studmat = $query->getResult();
+
+
+        return $studmat;
+
+
+
+    }
 }
